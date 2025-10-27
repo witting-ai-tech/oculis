@@ -7,7 +7,7 @@ A modern dashboard application built with Next.js, React, and Redux for managing
 - **Camera Management**
 
   - Add, edit, and delete cameras
-  - Configure camera settings
+  - Configure camera 
   - Monitor camera status and sync state
 
 - **User Management**
