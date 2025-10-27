@@ -1,0 +1,10 @@
+{
+  "compilerOptions": {
+    "paths": {
+      "@/*": ["./*"],
+      "@data/*": ["./data/*"],
+      "@components/*": ["./components/*"],
+      "@hooks/*": ["./hooks/*"]
+    }
+  }
+}

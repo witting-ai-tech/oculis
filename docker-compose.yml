@@ -1,0 +1,8 @@
+services:
+  oculis-ui:
+    image: registry.gitlab.com/wittingai/oculis/oculis-ui:latest
+    platform: linux/amd64
+    container_name: oculis-ui
+    ports:
+      - '80:80'
+    restart: always

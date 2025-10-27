@@ -1,0 +1,32 @@
+export const detectData = [
+  {
+    cameraName: "Camera-1",
+    username: "C-23XY5",
+    zoneLabel: "Walkway",
+    zoneType: "Rectangle",
+    modelType: "PPE Detection",
+    createdBy: "System",
+    lastUpdated: "Today",
+    viewImage: "/image.png",
+  },
+  {
+    cameraName: "Camera-2",
+    username: "C-23XY6",
+    zoneLabel: "Restricted Zone",
+    zoneType: "Polygon",
+    modelType: "Access Breach",
+    createdBy: "Gaurav",
+    lastUpdated: "2d ago",
+    viewImage: "/image.png",
+  },
+  {
+    cameraName: "Camera-3",
+    username: "C-23XY7",
+    zoneLabel: "Entry Gate",
+    zoneType: "Line",
+    modelType: "Entry/Exit Counting",
+    createdBy: "System",
+    lastUpdated: "Last week",
+    viewImage: "/image.png",
+  },
+]; 
