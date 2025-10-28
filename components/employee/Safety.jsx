@@ -1,5 +1,4 @@
 import React from "react";
-import DashTabCard from "./../DashTabCard";
 import { BsThreeDotsVertical } from "react-icons/bs";
 import Image from "next/image";
 import { Card } from "./Card";
