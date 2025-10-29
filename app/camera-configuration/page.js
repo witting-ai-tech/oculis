@@ -1,6 +1,6 @@
 "use client";
 import React, { useState, useEffect, useRef } from "react";
-import { CircleHelp } from "lucide-react";
+import { CircleHelp, Pen, Trash } from "lucide-react";
 import Hnavbar from "@/components/Hnavbar";
 import Cameras from "@/components/Cameras";
 import DetectedZones from "@/components/DetectedZones";
@@ -9,6 +9,9 @@ import { useRouter } from "next/navigation";
 import { cameraData } from "@/data/cameraData";
 import { detectData } from "@/data/detectData";
 import Image from 'next/image';
+import { DropdownMenu, DropdownMenuTrigger, DropdownMenuContent, DropdownMenuItem } from "@/components/ui/dropdown-menu";
+import { EllipsisVertical } from "lucide-react";
+
 
 const CamColumns = [
   {
@@ -91,6 +94,33 @@ const CamColumns = [
     },
   },
   { title: "Last Sync", key: "lastSync" },
+   {
+    title: "Actions",
+    key: "action",
+    render: (camera) => {
+      return (
+        <DropdownMenu>
+          <DropdownMenuTrigger>
+            <div className="rounded-md border-2 hover:border-[#9e77ed] w-fit p-1">
+              <EllipsisVertical size={20} />
+            </div>
+          </DropdownMenuTrigger>
+          <DropdownMenuContent className="w-[100px]">
+            <DropdownMenuItem onClick={()=>{
+                handleEdit(camera);
+              }}>
+              <Pen size={16} className="cursor-pointer hover:text-[#181d27]"/> Edit
+            </DropdownMenuItem>
+            <DropdownMenuItem onClick={()=>{
+                handleDelete(camera);
+              }}>
+              <Trash size={16} className="cursor-pointer hover:text-[#181d27]"/> Delete
+            </DropdownMenuItem>
+          </DropdownMenuContent>
+        </DropdownMenu>
+      );
+    },
+  },
 ];
 
 // const detectColumns = [
@@ -152,31 +182,32 @@ const CamColumns = [
 // ];
 
 const Page = () => {
+
   const [currentCam, setCurrentCam] = useState(0);
-  const router = useRouter();
-  const init = useRef(true);
+  // const router = useRouter();
+  // const init = useRef(true);
 
-  // 1️⃣ Hydrate from localStorage once
-  useEffect(() => {
-    if (typeof window !== "undefined") {
-      const saved = localStorage.getItem("currentCam");
-      if (saved !== null) setCurrentCam(parseInt(saved, 10));
-    }
-  }, []);
+  // // 1️⃣ Hydrate from localStorage once
+  // useEffect(() => {
+  //   if (typeof window !== "undefined") {
+  //     const saved = localStorage.getItem("currentCam");
+  //     if (saved !== null) setCurrentCam(parseInt(saved, 10));
+  //   }
+  // }, []);
 
-  // 2️⃣ Persist on change
-  useEffect(() => {
-    localStorage.setItem("currentCam", currentCam);
-  }, [currentCam]);
+  // // 2️⃣ Persist on change
+  // useEffect(() => {
+  //   localStorage.setItem("currentCam", currentCam);
+  // }, [currentCam]);
 
-  // 3️⃣ Reset to 0 on any path change (skip first mount)
-  useEffect(() => {
-    if (init.current) {
-      init.current = false;
-      return;
-    }
-    setCurrentCam(0);
-  }, [router.asPath]);
+  // // 3️⃣ Reset to 0 on any path change (skip first mount)
+  // useEffect(() => {
+  //   if (init.current) {
+  //     init.current = false;
+  //     return;
+  //   }
+  //   setCurrentCam(0);
+  // }, [router.asPath]);
 
   return (
     <CustomLayout>
