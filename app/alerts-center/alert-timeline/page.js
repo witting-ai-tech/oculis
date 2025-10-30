@@ -154,10 +154,8 @@ const AlertTimelinePage = () => {
             selectedIncident={selectedIncident}
             severityIcons={severityIcons}
           />
-        </div>
-
-        <div className={`fixed right-0 bottom-0 z-10 w-[calc(55%-186px)]`}>
-          <div className="control bg-white w-full flex flex-row items-center gap-3 justify-center px-12 py-[18px] mt-8 text-sm">
+          <div className={`absolute right-0 bottom-0 z-10 w-full`}>
+          <div className="control bg-white w-full flex flex-row items-center gap-3 justify-center px-12 pt-[18px] mt-8 text-sm">
             <DropdownMenu open={open} onOpenChange={setOpen}>
               <DropdownMenuTrigger
                 className={cn(
@@ -202,6 +200,9 @@ const AlertTimelinePage = () => {
             </DropdownMenu>
           </div>
         </div>
+        </div>
+
+        
       </section>
     </section>
   );

@@ -19,10 +19,10 @@ export default function AlertsCenterLayout({ children }) {
 
   return (
     <AlertsCenterContext.Provider value={contextValue}>
-      <Navbar />
+      {/* <Navbar /> */}
       <section className="flex flex-row h-screen">
         {/* sidebar */}
-        <SecSidebar
+        {/* <SecSidebar
           title={
             <>
               <svg
@@ -44,7 +44,7 @@ export default function AlertsCenterLayout({ children }) {
             </>
           }
           sidebar={sidebar}
-        />
+        /> */}
 
         <main className="p-8 w-full flex-1 overflow-y-auto bg-white">
           {children}

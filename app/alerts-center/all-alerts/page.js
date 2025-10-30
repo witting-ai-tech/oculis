@@ -297,9 +297,7 @@ const AllAlertsPage = () => {
             />
             {/* <div className="bg-green-300 w-full p-4">hello world</div> */}
           </div>
-          <div
-            className={`fixed right-0 bottom-0 z-10 w-[calc(100%-294px)] min-[1025px]:w-[calc(100%-332px)]`}
-          >
+          <div className={`absolute right-0 bottom-0 z-10 w-[100%]`}>
             <div className="control bg-white w-full flex flex-row items-center gap-3 justify-between px-12 py-[18px] mt-8 text-sm">
               <p className="text-[#535862] font-bold font-[18px]">
                 {selectedCount} alerts Selected

@@ -23,7 +23,7 @@ export default function AdminPanelLayout({ children }) {
       {/* <Navbar /> */}
       <section className="flex flex-row h-screen">
         {/* sidebar */}
-        <SecSidebar
+        {/* <SecSidebar
           title={
             <>
               <svg
@@ -45,9 +45,9 @@ export default function AdminPanelLayout({ children }) {
             </>
           }
           sidebar={sidebar}
-        />
+        /> */}
 
-        <main className="p-8 w-full flex-1 overflow-y-auto bg-white">
+        <main className="pt-8 pl-12 w-full flex-1 overflow-y-auto bg-white">
           {children}
         </main>
       </section>

@@ -171,7 +171,7 @@ const Page = () => {
 
   return (
     <CustomLayout>
-      <div className="ml-12 xl:ml-16 pl-16 pr-8 pb-16">
+      <div className="ml-4 pl-8 pr-8 pb-16">
         {/* <div className="w-[50%] xl:w-[40%]">
           <Hnavbar
             menu={menu}
@@ -194,7 +194,7 @@ const Page = () => {
           )}
 
           <div className="flex-row p-8">
-            <h1 className="font-semibold text-lg">User Table</h1>
+            <h1 className="font-semibold text-lg mb-6">User Table</h1>
             <Table 
               columns={userColumns}
               data={paginatedData}

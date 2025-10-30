@@ -189,7 +189,7 @@ const EmployeesPage = () => {
   return (
     <>
       {overlay ? (
-        <div className="">
+        <div className="mr-10">
           <div className="flex flex-row items-center justify-between mb-6">
             <button
               onClick={() => setOverlay(false)}
@@ -248,7 +248,7 @@ const EmployeesPage = () => {
           </div>
         </div>
       ) : (
-        <div>
+        <div className="mr-10">
           <div className="flex flex-row items-center gap-2 mb-6">
             <svg
               xmlns="http://www.w3.org/2000/svg"
