@@ -102,7 +102,7 @@ export default function Home() {
 
   return (
     <CustomLayout>
-      <section className="inter ml-16 pl-12 xl:pl-16 pr-6 xl:pr-8 pb-8">
+      <section className="inter pl-12 xl:pl-16 pr-6 xl:pr-8 pb-8">
         <Hnavbar
           setCurrentTab={handleTabChange}
           currentTab={currentTab}

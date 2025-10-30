@@ -422,7 +422,7 @@ const Page = () => {
   return (
     <>
       <Navbar />
-      <section className="ml-12 xl:ml-16 pl-16 pt-12">
+      <section className="xl:ml-16 pl-16 pt-12">
         {/* stepper */}
 
         <div className="w-full flex flex-row items-start justify-center gap-4 mb-8 relative">

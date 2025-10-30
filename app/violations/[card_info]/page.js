@@ -256,7 +256,7 @@ const Page = () => {
 
   return (
     <CustomLayout>
-      <div className="ml-16 pl-12 xl:pl-16 pr-6 xl:pr-8 z-1 pb-16">
+      <div className="xl:pl-16 pr-6 xl:pr-8 z-1 pb-16">
         <div className="shadow-card relative w-full z-0 p-4 mt-2 mb-8">
           <div className="flex flex-row justify-between items-center p-2 pb-4">
             <h2 className="py-2 text-[#181d27] font-semibold">

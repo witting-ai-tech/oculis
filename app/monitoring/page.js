@@ -68,7 +68,7 @@ const Page = () => {
   return (
     <>
       <Navbar />
-      <section className="flex flex-row ml-16 h-screen">
+      <section className="flex flex-row h-screen">
         {/* sidebar */}
         <SecSidebar
           title={

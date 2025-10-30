@@ -211,7 +211,7 @@ const Page = () => {
 
   return (
     <CustomLayout>
-      <div className="ml-12 xl:ml-16 pl-16 pr-8 pb-16">
+      <div className="xl:ml-16 pl-16 pr-8 pb-16">
         {/* <div className="w-[50%] xl:w-[40%]">
           <Hnavbar
             menu={menu}
