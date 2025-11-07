@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from "react";
 import Highcharts from "highcharts";
 import HighchartsReact from "highcharts-react-official";
-import { EllipsisVertical } from "lucide-react";
+import { DotsVertical } from "@untitledui/icons";
 import { Separator } from "@/components/ui/separator";
 
 const CardsChart = ({ data }) => {
@@ -122,7 +122,7 @@ const CardsChart = ({ data }) => {
         <h2 className="py-2 text-[#181d27] font-semibold">
           Incident Over Time
         </h2>
-        <EllipsisVertical className="text-[#a4a7ae]" size={20} />
+        <DotsVertical className="text-[#a4a7ae]" size={20} />
       </div>
       <Separator />
       <HighchartsReact highcharts={Highcharts} options={chartOptions} />

@@ -1,12 +1,10 @@
 "use client";
-import Navbar from "@/components/Navbar";
 import Link from "next/link";
 import { useEffect } from "react";
 
 export default function Page() {
   return (
     <>
-      <Navbar />
       <div className="min-h-screen flex flex-col items-center justify-center bg-[var(--Base-White,#FFF)] px-4">
         <div className="flex items-center justify-center w-[139px] h-[139px] mx-auto rounded-full bg-[radial-gradient(50%_50%_at_50%_50%,_#E1D3FF_0%,_#A174FF_100%)] shadow-[0_0_30px_8px_rgba(161,116,255,0.75)] ">
           <svg

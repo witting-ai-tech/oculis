@@ -3,7 +3,7 @@ import Hnavbar from "@/components/Hnavbar";
 import { useState, useEffect, useRef } from "react";
 import { useRouter } from "next/navigation";
 import CustomLayout from "@/components/CustomLayout";
-import { EllipsisVertical } from "lucide-react";
+import { DotsVertical } from "@untitledui/icons";
 import MultiLineChart from "@/components/charts/MultiLineChart";
 import StackedBarChart from "@/components/charts/StackedBarChart";
 import DashCard from "@/components/DashCard";
@@ -133,7 +133,7 @@ export default function Home() {
             <div key={idx} className="w-full shadow-card p-4">
               <div className="flex flex-row justify-between items-center p-2">
                 <h2 className="py-2 text-[#181d27] font-semibold">{sec.title}</h2>
-                <EllipsisVertical className="text-[#a4a7ae]" size={20} />
+                <DotsVertical className="text-[#a4a7ae]" size={20} />
               </div>
               <div className="mt-2">
                 {sec.type=== "line" && (

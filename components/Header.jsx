@@ -4,13 +4,8 @@ import React, { useState } from "react";
 import { usePathname } from "next/navigation";
 import { Input } from "@/components/ui/input";
 import Drop from "./Drop";
-import {
-  ListFilter,
-  ChevronDown,
-  MapPin,
-  History,
-  RefreshCw,
-} from "lucide-react";
+import { History } from "lucide-react";
+import { FilterLines, ChevronDown, MarkerPin01, RefreshCw02 } from "@untitledui/icons";
 import { useDispatch, useSelector } from "react-redux";
 
 import { setHistory, setSites } from "../app/store/slices/filtersSlice"; // adjust path
@@ -112,7 +107,7 @@ const Header = () => {
 
         {showSites && (
           <Drop
-            icon={<MapPin />}
+            icon={<MarkerPin01 />}
             backIcon={<ChevronDown />}
             title="Sites"
             items={sites}
@@ -123,7 +118,7 @@ const Header = () => {
 
         {showFilters && (
           <Drop
-            icon={<ListFilter />}
+            icon={<FilterLines />}
             title="Filters"
             items={extraFilters}
             selectedItem="Filters"
@@ -132,7 +127,7 @@ const Header = () => {
         {showRefresh && (
           <Button variant="outline" className="ml-2 lg:hidden">
             <span>
-              <RefreshCw size={20} />
+              <RefreshCw02 size={20} />
             </span>
             Refresh
           </Button>

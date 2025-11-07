@@ -2,7 +2,7 @@ import React from "react";
 import Image from "next/image";
 
 import { zones } from "@/data/livepage";
-import { XIcon, Search } from "lucide-react";
+import { XClose, SearchLg } from "@untitledui/icons";
 import { Input } from "@/components/ui/input";
 import {
   Accordion,
@@ -18,12 +18,12 @@ const CamOverlay = ({ setCamOverlay, card }) => {
         <div className="w-full flex flex-row items-center justify-between">
           <h3 className="text-[#181D27] font-semibold text-xl">Cameras</h3>
           <button onClick={() => setCamOverlay(false)}>
-            <XIcon size={20} />
+            <XClose size={20} />
           </button>
         </div>
 
         <div className="relative w-full max-w-[500px] text-[#717680]">
-          <Search
+          <SearchLg
             size={20}
             className="absolute left-3 top-1/2 -translate-y-1/2 pointer-events-none"
           />

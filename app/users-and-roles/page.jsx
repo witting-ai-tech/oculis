@@ -1,17 +1,13 @@
 "use client";
 import React, { useState, useEffect, useRef } from "react";
-import Hnavbar from "@/components/Hnavbar";
-import Roles from "@/components/Roles";
-import Users from "@/components/Users";
+
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { CircleHelp, Pen, Trash } from "lucide-react";
-import { useRouter } from "next/navigation";
+import { HelpCircle, Edit01, Trash02, DotsVertical} from "@untitledui/icons";
+
 import { Table } from "@/components/Table";
 import NavBtn from "@components/NavBtn";
 import { userData } from "@/data/userData";
-import { rolesData } from "@/data/rolesData";
 import { DropdownMenu, DropdownMenuTrigger, DropdownMenuContent, DropdownMenuItem } from "@/components/ui/dropdown-menu";
-import { EllipsisVertical } from "lucide-react";
 
 import CustomLayout from "@/components/CustomLayout";
 import AddUser from "@/components/forms/AddUser";
@@ -40,7 +36,7 @@ const getUserColumns = (handleUserEdit, handleUserDelete)=> [
     title: (
       <div className="flex items-center gap-1">
         Help
-        <CircleHelp size={16} />
+        <HelpCircle size={16} />
       </div>
     ),
     key: "role",
@@ -55,19 +51,19 @@ const getUserColumns = (handleUserEdit, handleUserDelete)=> [
         <DropdownMenu>
           <DropdownMenuTrigger>
             <div className="rounded-md border-2 hover:border-[#9e77ed] w-fit p-1">
-              <EllipsisVertical size={20} />
+              <DotsVertical size={20} />
             </div>
           </DropdownMenuTrigger>
           <DropdownMenuContent className="w-[100px]">
             <DropdownMenuItem onClick={()=>{
                 handleUserEdit(user);
               }}>
-              <Pen size={16} className="cursor-pointer hover:text-[#181d27]"/> Edit
+              <Edit01 size={16} className="cursor-pointer hover:text-[#181d27]"/> Edit
             </DropdownMenuItem>
             <DropdownMenuItem onClick={()=>{
                 handleUserDelete(user);
               }}>
-              <Trash size={16} className="cursor-pointer hover:text-[#181d27]"/> Delete
+              <Trash02 size={16} className="cursor-pointer hover:text-[#181d27]"/> Delete
             </DropdownMenuItem>
            
           </DropdownMenuContent>
@@ -172,15 +168,7 @@ const Page = () => {
   return (
     <CustomLayout>
       <div className="ml-4 pl-8 pr-8 pb-16">
-        {/* <div className="w-[50%] xl:w-[40%]">
-          <Hnavbar
-            menu={menu}
-            currentTab={currentRole}
-            setCurrentTab={setCurrentRole}
-          />
-        </div> */}
-        {/* <div className="mt-8">{menu[currentRole]?.component}</div> */}
-        <section className="mt-8 border rounded-lg">
+      <section className="mt-8 border rounded-lg">
           {showAddUser && (
             <AddUser onClose={()=> setshowAddUser(false)} 
               editItem={editItem}

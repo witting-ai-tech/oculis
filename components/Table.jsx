@@ -1,6 +1,6 @@
 "use client";
 import React, { useState, useEffect } from "react";
-import { Trash2, Pen } from "lucide-react";
+import { Edit01, Trash02 } from "@untitledui/icons";
 import { Checkbox } from "@/components/ui/checkbox";
 export function Table({
   columns = [],
@@ -113,14 +113,14 @@ export function Table({
                 >
                   <div className="flex justify-center items-center gap-3">
                     {onDelete && (
-                      <Trash2
+                      <Trash02
                         size={16}
                         className="hover:text-red-500 cursor-pointer"
                         onClick={() => onDelete(item)}
                       />
                     )}
                     {onEdit && (
-                      <Pen
+                      <Edit01
                         size={16}
                         className="cursor-pointer hover:text-[#181d27]"
                         onClick={() => {

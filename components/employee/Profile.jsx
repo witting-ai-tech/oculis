@@ -4,6 +4,7 @@ import CircularProgress from "@/components/ui/circularProgress";
 import { Separator } from "@/components/ui/separator";
 import Timeline from "./../Timeline";
 import { Table } from "@/components/Table";
+import { ClockRewind } from "@untitledui/icons";
 
 const timeline = [
   {
@@ -147,21 +148,7 @@ const Profile = ({ currentItem }) => {
         </div>
         <div className="p-6 bg-white border rounded-[8px] flex-1 w-full">
           <div className="flex flex-row gap-2 items-center">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="22"
-              height="20"
-              viewBox="0 0 22 20"
-              fill="none"
-            >
-              <path
-                d="M20.7 11.5L18.7005 9.5L16.7 11.5M19 10C19 14.9706 14.9706 19 10 19C5.02944 19 1 14.9706 1 10C1 5.02944 5.02944 1 10 1C13.3019 1 16.1885 2.77814 17.7545 5.42909M10 5V10L13 12"
-                stroke="#181D27"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-            </svg>
+            <ClockRewind/>
             <h4 className="font-medium">Work Metrices</h4>
           </div>
           <Separator className="my-3" />

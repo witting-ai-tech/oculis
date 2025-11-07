@@ -5,7 +5,6 @@ const CustomLayout = ({ children }) => {
   return (
     <div className="custom-layout">
       <Header />
-      {/* <Navbar /> */}
       {children}
     </div>
   );

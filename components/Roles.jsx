@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Button } from "@/components/ui/button";
-import { Plus } from "lucide-react";
+import { Plus } from "@untitledui/icons";
 import { Table } from "./Table";
 import NavBtn from "./NavBtn";
 import AddRole from "./forms/AddRole";

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { ArrowLeft, ChevronDown, Search, ListFilter } from "lucide-react";
+import { ArrowLeft, ChevronDown, SearchLg, FilterLines } from "@untitledui/icons";
 import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
@@ -112,14 +112,14 @@ const DetectNav = () => {
       </div>
       <div className="flex flex-row items-center gap-4">
         <div className="relative w-[200px] xl:w-[320px] ">
-          <Search className="absolute left-4 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+          <SearchLg className="absolute left-4 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
           <Input
             placeholder="Search"
             className="pl-10 py-[16px] bg-white focus:border-none focus-visible:ring-1"
           />
         </div>
         <Drop
-          icon={<ListFilter />}
+          icon={<FilterLines />}
           title="Filters"
           items={extraFilters}
           selectedItem="Filters"

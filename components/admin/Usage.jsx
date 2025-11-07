@@ -1,6 +1,7 @@
 import React from "react";
 import { Progress } from "@/components/ui/progress";
 import { Button } from "./../Button";
+import { ArrowNarrowUpRight, ArrowUpRight } from "@untitledui/icons";
 
 const Usage = () => {
   return (
@@ -23,21 +24,7 @@ const Usage = () => {
               <div className="flex flex-col items-end">
                 <p className="text-[#7D48DF] font-bold">24</p>
                 <button className="text-xs font-semibold border border-[#D5D7DA] shadow-xs rounded-[4px] mt-[6px] px-2 py-1 flex flex-row gap-2 items-center">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="19"
-                    height="19"
-                    viewBox="0 0 19 19"
-                    fill="none"
-                  >
-                    <path
-                      d="M5.04688 14L14.0469 5M14.0469 5H8.04688M14.0469 5V11"
-                      stroke="#535862"
-                      strokeWidth="1.5"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    />
-                  </svg>
+                  <ArrowNarrowUpRight size={18} color="#535862"/>
                   View Cameras
                 </button>
               </div>
@@ -54,21 +41,8 @@ const Usage = () => {
               <div className="flex flex-col items-end">
                 <p className="text-[#7D48DF] font-bold">8</p>
                 <button className="font-semibold text-xs border border-[#D5D7DA] shadow-xs rounded-[4px] mt-[6px] px-2 py-1 flex flex-row gap-2 items-center">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="19"
-                    height="19"
-                    viewBox="0 0 19 19"
-                    fill="none"
-                  >
-                    <path
-                      d="M5.04688 14L14.0469 5M14.0469 5H8.04688M14.0469 5V11"
-                      stroke="#535862"
-                      strokeWidth="1.5"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    />
-                  </svg>
+                  <ArrowNarrowUpRight size={18} color="#535862"/>
+
                   View Cameras
                 </button>
               </div>

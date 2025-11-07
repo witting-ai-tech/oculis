@@ -1,11 +1,9 @@
 import React, { useState, useEffect, useRef } from "react";
 import { Button } from "@/components/ui/button";
-import { CiExport } from "react-icons/ci";
-import { Plus } from "lucide-react";
+import { Plus, Upload01 } from "@untitledui/icons";
 import { Table } from "./Table";
 import NavBtn from "./NavBtn";
 import { useSelector } from "react-redux";
-import Import from "./Import";
 import Link from "next/link";
 
 const Cameras = ({ columns, cameraData }) => {
@@ -82,7 +80,7 @@ const Cameras = ({ columns, cameraData }) => {
             aria-label="Import"
             onClick={() => setShowImport(!showImport)}
           >
-            <CiExport className="mr-2" />
+            <Upload01 className="mr-2" />
             Import
           </Button>
           <input

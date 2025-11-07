@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from "react";
 import { alertData } from "@/data/alertData";
 import { Button } from "@/components/ui/button";
-import { RefreshCw, ChevronDown, ChevronUp, ChevronRight } from "lucide-react";
+import { RefreshCcw02, ChevronDown, ChevronUp, ChevronRight } from "@untitledui/icons";
 import AlertCard from "@/components/AlertCard";
 import Incident from "@/components/Incident";
 import Image from "next/image";
@@ -125,7 +125,7 @@ const AlertTimelinePage = () => {
                   <div className="hidden lg:flex flex-row items-center">
                     <Button variant="outline" className="ml-2">
                       <span>
-                        <RefreshCw size={20} />
+                        <RefreshCcw02 size={20} />
                       </span>
                       Refresh
                     </Button>

@@ -1,6 +1,6 @@
 import React from "react";
 import Image from "next/image";
-import { Eye } from "lucide-react";
+import { Eye } from "@untitledui/icons";
 const Monitoring = ({ view, cards, setLive }) => {
   return (
     <div

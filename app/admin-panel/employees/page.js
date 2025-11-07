@@ -8,7 +8,8 @@ import { Button } from "@/components/Button";
 import Profile from "@/components/employee/Profile";
 import Personal from "@/components/employee/Personal";
 import { useSessionStorage } from "@/hooks/useSessionStorage";
-import { ChevronRight, Mail, UserRoundPlus, Search } from "lucide-react";
+import { ArrowLeft, ChevronRight, Edit05, LayoutAlt04, Mail01, SearchLg, UserPlus01 } from "@untitledui/icons";
+
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import Safety from "@/components/employee/Safety";
 import Attendance from "@/components/employee/Attendance";
@@ -195,46 +196,18 @@ const EmployeesPage = () => {
               onClick={() => setOverlay(false)}
               className="shadow-skew rounded-full w-10 h-10 flex items-center justify-center bg-white hover:bg-gray-100 transition"
             >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="20"
-                height="20"
-                viewBox="0 0 20 20"
-                fill="none"
-              >
-                <path
-                  d="M16.6663 10H3.33301M3.33301 10L8.33301 15M3.33301 10L8.33301 5"
-                  stroke="#535862"
-                  strokeWidth="1.66667"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
-              </svg>
+              <ArrowLeft color="#535862" size={20}/>
             </button>
             <div className="flex flex-row gap-2">
               <Button>
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="20"
-                  height="20"
-                  viewBox="0 0 20 20"
-                  fill="none"
-                >
-                  <path
-                    d="M9.16602 3.3332H5.66602C4.26588 3.3332 3.56582 3.3332 3.03104 3.60568C2.56063 3.84536 2.17818 4.22782 1.9385 4.69822C1.66602 5.233 1.66602 5.93307 1.66602 7.3332V14.3332C1.66602 15.7333 1.66602 16.4334 1.9385 16.9682C2.17818 17.4386 2.56063 17.821 3.03104 18.0607C3.56582 18.3332 4.26588 18.3332 5.66602 18.3332H12.666C14.0661 18.3332 14.7662 18.3332 15.301 18.0607C15.7714 17.821 16.1538 17.4386 16.3935 16.9682C16.666 16.4334 16.666 15.7333 16.666 14.3332V10.8332M6.66599 13.3332H8.06145C8.4691 13.3332 8.67292 13.3332 8.86474 13.2871C9.0348 13.2463 9.19737 13.179 9.34649 13.0876C9.51468 12.9845 9.65881 12.8404 9.94706 12.5521L17.916 4.5832C18.6064 3.89284 18.6064 2.77355 17.916 2.0832C17.2257 1.39284 16.1064 1.39284 15.416 2.0832L7.44704 10.0521C7.15879 10.3404 7.01466 10.4845 6.91159 10.6527C6.82021 10.8018 6.75287 10.9644 6.71204 11.1345C6.66599 11.3263 6.66599 11.5301 6.66599 11.9378V13.3332Z"
-                    stroke="#414651"
-                    strokeWidth="1.66667"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
-                </svg>
+                <Edit05 size={18}/>
                 Edit
               </Button>
               <Button>
-                <UserRoundPlus size={16} /> Share
+                <UserPlus01 size={16} /> Share
               </Button>
               <Button className="bg-[#7D48DF] text-white">
-                Send Mail <Mail size={16} />
+                Send Mail <Mail01 size={16} />
               </Button>
             </div>
           </div>
@@ -250,22 +223,7 @@ const EmployeesPage = () => {
       ) : (
         <div className="mr-10">
           <div className="flex flex-row items-center gap-2 mb-6">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="18"
-              height="18"
-              viewBox="0 0 18 18"
-              fill="none"
-            >
-              <path
-                d="M9 9L16.5 9M9 1.5L9 16.5M5.5 1.5H12.5C13.9001 1.5 14.6002 1.5 15.135 1.77248C15.6054 2.01217 15.9878 2.39462 16.2275 2.86502C16.5 3.3998 16.5 4.09987 16.5 5.5V12.5C16.5 13.9001 16.5 14.6002 16.2275 15.135C15.9878 15.6054 15.6054 15.9878 15.135 16.2275C14.6002 16.5 13.9001 16.5 12.5 16.5H5.5C4.09987 16.5 3.3998 16.5 2.86502 16.2275C2.39462 15.9878 2.01217 15.6054 1.77248 15.135C1.5 14.6002 1.5 13.9001 1.5 12.5V5.5C1.5 4.09987 1.5 3.3998 1.77248 2.86502C2.01217 2.39462 2.39462 2.01217 2.86502 1.77248C3.3998 1.5 4.09987 1.5 5.5 1.5Z"
-                stroke="#535862"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-            </svg>
-
+            <LayoutAlt04 size={20}/>
             <span>
               <ChevronRight size={16} className="text-[#D5D7DA]" />
             </span>
@@ -288,7 +246,7 @@ const EmployeesPage = () => {
             <div className="w-full mt-8 flex flex-row gap-[200px]">
               <div className="w-full flex flex-row gap-5">
                 <div className="relative w-full max-w-[500px] text-[#717680]">
-                  <Search
+                  <SearchLg
                     size={20}
                     className="absolute left-3 top-1/2 -translate-y-1/2 pointer-events-none"
                   />

@@ -1,6 +1,6 @@
 "use client";
 import React, { useState, useEffect, useRef } from "react";
-import { CircleHelp, Pen, Trash } from "lucide-react";
+import { HelpCircle, Pencil01, Trash02, DotsVertical} from "@untitledui/icons";
 import Hnavbar from "@/components/Hnavbar";
 import Cameras from "@/components/Cameras";
 import DetectedZones from "@/components/DetectedZones";
@@ -10,7 +10,6 @@ import { cameraData } from "@/data/cameraData";
 import { detectData } from "@/data/detectData";
 import Image from 'next/image';
 import { DropdownMenu, DropdownMenuTrigger, DropdownMenuContent, DropdownMenuItem } from "@/components/ui/dropdown-menu";
-import { EllipsisVertical } from "lucide-react";
 
 
 const CamColumns = [
@@ -29,7 +28,7 @@ const CamColumns = [
     title: (
       <div className="flex items-center gap-1">
         Site
-        <CircleHelp size={16} />
+        <HelpCircle size={16} />
       </div>
     ),
     key: "site",
@@ -38,7 +37,7 @@ const CamColumns = [
     title: (
       <div className="flex items-center gap-1">
         Zone
-        <CircleHelp size={16} />
+        <HelpCircle size={16} />
       </div>
     ),
     key: "zone",
@@ -46,7 +45,7 @@ const CamColumns = [
   {
     title: (
       <div className="flex items-center gap-1">
-        Floor <CircleHelp size={16} />
+        Floor <HelpCircle size={16} />
       </div>
     ),
     key: "floor",
@@ -54,7 +53,7 @@ const CamColumns = [
   {
     title: (
       <div className="flex items-center gap-1">
-        Models Enabled <CircleHelp size={16} />
+        Models Enabled <HelpCircle size={28} />
       </div>
     ),
     key: "modelsEnabled",
@@ -102,19 +101,19 @@ const CamColumns = [
         <DropdownMenu>
           <DropdownMenuTrigger>
             <div className="rounded-md border-2 hover:border-[#9e77ed] w-fit p-1">
-              <EllipsisVertical size={20} />
+              <DotsVertical size={20} />
             </div>
           </DropdownMenuTrigger>
           <DropdownMenuContent className="w-[100px]">
             <DropdownMenuItem onClick={()=>{
                 handleEdit(camera);
               }}>
-              <Pen size={16} className="cursor-pointer hover:text-[#181d27]"/> Edit
+              <Pencil01 size={16} className="cursor-pointer hover:text-[#181d27]"/> Edit
             </DropdownMenuItem>
             <DropdownMenuItem onClick={()=>{
                 handleDelete(camera);
               }}>
-              <Trash size={16} className="cursor-pointer hover:text-[#181d27]"/> Delete
+              <Trash02 size={16} className="cursor-pointer hover:text-[#181d27]"/> Delete
             </DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>

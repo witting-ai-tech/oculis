@@ -4,7 +4,7 @@ import Image from "next/image";
 import { useSelector } from "react-redux";
 import { Table } from "@/components/Table";
 import Incident from "@/components/Incident";
-import { XIcon, ChevronsUpDown, EllipsisVertical } from "lucide-react";
+import { XClose, ChevronSelectorVertical, DotsVertical } from "@untitledui/icons";
 import CustomLayout from "@/components/CustomLayout";
 import { severityIcons } from "@/data/severityIcons";
 import MultiLineChart from "@/components/charts/MultiLineChart";
@@ -14,7 +14,7 @@ const columns = [
   {
     title: (
       <div className="flex items-center gap-2 cursor-pointer">
-        Timestamp <ChevronsUpDown size={16} />
+        Timestamp <ChevronSelectorVertical size={16} />
       </div>
     ),
     key: "date",
@@ -22,7 +22,7 @@ const columns = [
   {
     title: (
       <div className="flex items-center gap-2 cursor-pointer">
-        Worker ID <ChevronsUpDown size={16} />
+        Worker ID <ChevronSelectorVertical size={16} />
       </div>
     ),
     key: "workerId",
@@ -30,7 +30,7 @@ const columns = [
   {
     title: (
       <div className="flex items-center gap-2 cursor-pointer">
-        Name <ChevronsUpDown size={16} />
+        Name <ChevronSelectorVertical size={16} />
       </div>
     ),
     key: "worker",
@@ -38,7 +38,7 @@ const columns = [
   {
     title: (
       <div className="flex items-center gap-2 cursor-pointer">
-        Violation <ChevronsUpDown size={16} />
+        Violation <ChevronSelectorVertical size={16} />
       </div>
     ),
     key: "violation",
@@ -46,7 +46,7 @@ const columns = [
   {
     title: (
       <div className="flex items-center gap-2 cursor-pointer">
-        Site <ChevronsUpDown size={16} />
+        Site <ChevronSelectorVertical size={16} />
       </div>
     ),
     key: "location",
@@ -54,7 +54,7 @@ const columns = [
   {
     title: (
       <div className="flex items-center gap-2 cursor-pointer">
-        Zone <ChevronsUpDown size={16} />
+        Zone <ChevronSelectorVertical size={16} />
       </div>
     ),
     key: "zone",
@@ -62,7 +62,7 @@ const columns = [
   {
     title: (
       <div className="flex items-center gap-2 cursor-pointer">
-        Floor <ChevronsUpDown size={16} />
+        Floor <ChevronSelectorVertical size={16} />
       </div>
     ),
     key: "floor",
@@ -70,7 +70,7 @@ const columns = [
   {
     title: (
       <div className="flex items-center gap-2 cursor-pointer">
-        Camera <ChevronsUpDown size={16} />
+        Camera <ChevronSelectorVertical size={16} />
       </div>
     ),
     key: "camera",
@@ -262,7 +262,7 @@ const Page = () => {
             <h2 className="py-2 text-[#181d27] font-semibold">
               Incident Over Time
             </h2>
-            <EllipsisVertical className="text-[#a4a7ae]" size={20} />
+            <DotsVertical className="text-[#a4a7ae]" size={20} />
           </div>
           <Separator />
           <MultiLineChart
@@ -309,7 +309,7 @@ const Page = () => {
                 selectedIncident={currentItem}
                 severityIcons={severityIcons}
               />
-              <XIcon
+              <XClose
                 className="p-2 cursor-pointer text-[#54565a]"
                 size={40}
                 onClick={() => setOverlay(false)}
