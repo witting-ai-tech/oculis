@@ -1,6 +1,6 @@
 "use client";
 import React, { useState, useEffect, useRef } from "react";
-import { CircleHelp } from "lucide-react";
+import { HelpCircle, Pencil01, Trash02, DotsVertical} from "@untitledui/icons";
 import Hnavbar from "@/components/Hnavbar";
 import Cameras from "@/components/Cameras";
 import DetectedZones from "@/components/DetectedZones";
@@ -9,6 +9,8 @@ import { useRouter } from "next/navigation";
 import { cameraData } from "@/data/cameraData";
 import { detectData } from "@/data/detectData";
 import Image from 'next/image';
+import { DropdownMenu, DropdownMenuTrigger, DropdownMenuContent, DropdownMenuItem } from "@/components/ui/dropdown-menu";
+
 
 const CamColumns = [
   {
@@ -26,7 +28,7 @@ const CamColumns = [
     title: (
       <div className="flex items-center gap-1">
         Site
-        <CircleHelp size={16} />
+        <HelpCircle size={16} />
       </div>
     ),
     key: "site",
@@ -35,7 +37,7 @@ const CamColumns = [
     title: (
       <div className="flex items-center gap-1">
         Zone
-        <CircleHelp size={16} />
+        <HelpCircle size={16} />
       </div>
     ),
     key: "zone",
@@ -43,7 +45,7 @@ const CamColumns = [
   {
     title: (
       <div className="flex items-center gap-1">
-        Floor <CircleHelp size={16} />
+        Floor <HelpCircle size={16} />
       </div>
     ),
     key: "floor",
@@ -51,7 +53,7 @@ const CamColumns = [
   {
     title: (
       <div className="flex items-center gap-1">
-        Models Enabled <CircleHelp size={16} />
+        Models Enabled <HelpCircle size={28} />
       </div>
     ),
     key: "modelsEnabled",
@@ -91,6 +93,33 @@ const CamColumns = [
     },
   },
   { title: "Last Sync", key: "lastSync" },
+   {
+    title: "Actions",
+    key: "action",
+    render: (camera) => {
+      return (
+        <DropdownMenu>
+          <DropdownMenuTrigger>
+            <div className="rounded-md border-2 hover:border-[#9e77ed] w-fit p-1">
+              <DotsVertical size={20} />
+            </div>
+          </DropdownMenuTrigger>
+          <DropdownMenuContent className="w-[100px]">
+            <DropdownMenuItem onClick={()=>{
+                handleEdit(camera);
+              }}>
+              <Pencil01 size={16} className="cursor-pointer hover:text-[#181d27]"/> Edit
+            </DropdownMenuItem>
+            <DropdownMenuItem onClick={()=>{
+                handleDelete(camera);
+              }}>
+              <Trash02 size={16} className="cursor-pointer hover:text-[#181d27]"/> Delete
+            </DropdownMenuItem>
+          </DropdownMenuContent>
+        </DropdownMenu>
+      );
+    },
+  },
 ];
 
 // const detectColumns = [
@@ -152,35 +181,36 @@ const CamColumns = [
 // ];
 
 const Page = () => {
+
   const [currentCam, setCurrentCam] = useState(0);
-  const router = useRouter();
-  const init = useRef(true);
+  // const router = useRouter();
+  // const init = useRef(true);
 
-  // 1️⃣ Hydrate from localStorage once
-  useEffect(() => {
-    if (typeof window !== "undefined") {
-      const saved = localStorage.getItem("currentCam");
-      if (saved !== null) setCurrentCam(parseInt(saved, 10));
-    }
-  }, []);
+  // // 1️⃣ Hydrate from localStorage once
+  // useEffect(() => {
+  //   if (typeof window !== "undefined") {
+  //     const saved = localStorage.getItem("currentCam");
+  //     if (saved !== null) setCurrentCam(parseInt(saved, 10));
+  //   }
+  // }, []);
 
-  // 2️⃣ Persist on change
-  useEffect(() => {
-    localStorage.setItem("currentCam", currentCam);
-  }, [currentCam]);
+  // // 2️⃣ Persist on change
+  // useEffect(() => {
+  //   localStorage.setItem("currentCam", currentCam);
+  // }, [currentCam]);
 
-  // 3️⃣ Reset to 0 on any path change (skip first mount)
-  useEffect(() => {
-    if (init.current) {
-      init.current = false;
-      return;
-    }
-    setCurrentCam(0);
-  }, [router.asPath]);
+  // // 3️⃣ Reset to 0 on any path change (skip first mount)
+  // useEffect(() => {
+  //   if (init.current) {
+  //     init.current = false;
+  //     return;
+  //   }
+  //   setCurrentCam(0);
+  // }, [router.asPath]);
 
   return (
     <CustomLayout>
-      <div className="ml-12 xl:ml-16 pl-16 pr-8 pb-16">
+      <div className="ml-4 xl:ml-16 pl-8 pr-8 pb-16">
         {/* <div className="w-[50%] xl:w-[40%]">
           <Hnavbar
             menu={menu}

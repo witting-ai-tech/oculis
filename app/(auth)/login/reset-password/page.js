@@ -2,9 +2,10 @@
 
 import { useState } from "react";
 import Image from "next/image";
-import { IoMdArrowBack } from "react-icons/io";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
+import { ArrowLeft } from "@untitledui/icons";
+
 const ValidationMessage = ({ isValid, message }) => (
   <div className="flex items-center gap-2">
     <svg
@@ -151,7 +152,7 @@ export default function Page() {
           href="/login"
           className="mt-8 flex flex-row gap-4 text-sm text-[#535862] font-semibold hover:underline"
         >
-          <IoMdArrowBack size={20} />
+          <ArrowLeft size={20} />
           Back to log in
         </Link>
       </div>

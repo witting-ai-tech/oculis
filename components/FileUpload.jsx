@@ -1,5 +1,5 @@
 import React, { useRef, useState } from "react";
-import { CloudUpload } from "lucide-react";
+import { UploadCloud01 } from "@untitledui/icons";
 
 export default function FileUpload({
   name,
@@ -101,7 +101,7 @@ export default function FileUpload({
         ].join(" ")}
       >
         <div className="h-14 w-14 rounded-lg border border-[#D5D7DA] flex items-center justify-center">
-          <CloudUpload size={28} className="text-[#535862]" />
+          <UploadCloud01 size={28} className="text-[#535862]" />
         </div>
 
         <div className="flex flex-col">

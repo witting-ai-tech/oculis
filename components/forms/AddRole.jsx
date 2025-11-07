@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { X, Shield, Info, Plus, Save } from "lucide-react";
+import { XClose, Shield02, InfoCircle, Plus, Save } from "@untitledui/icons";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Switch } from "@/components/ui/switch";
@@ -58,7 +58,7 @@ export default function AddRole({ onClose, handleFormSubmit, editItem }) {
           {/* Header */}
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-2 text-purple-600">
-              <Shield className="h-5 w-5" />
+              <Shield02 className="h-5 w-5" />
               <h2 className="text-lg font-medium">
                 {editItem ? "Edit" : "Add New"} Role
               </h2>
@@ -67,7 +67,7 @@ export default function AddRole({ onClose, handleFormSubmit, editItem }) {
               onClick={onClose}
               className="text-[#535862] hover:text-gray-600"
             >
-              <X className="h-5 w-5" />
+              <XClose className="h-5 w-5" />
             </button>
           </div>
 
@@ -121,7 +121,7 @@ export default function AddRole({ onClose, handleFormSubmit, editItem }) {
               >
                 Access Level
               </label>
-              <Info className="h-3 w-3 text-[#535862]" />
+              <InfoCircle className="h-3 w-3 text-[#535862]" />
             </div>
             <SelectComp
               data={AccessLevelData}

@@ -1,5 +1,5 @@
 import React from "react";
-import { Square, Hand, PenTool, Brush, Plus, Save, Trash2 } from "lucide-react";
+import { Hand, PenTool01, Brush01, Square, Plus  } from "@untitledui/icons";
 import Pop from "./Pop";
 import { CirclePicker } from "react-color";
 import { Button } from "@/components/ui/button";
@@ -55,7 +55,7 @@ const Controls = ({
                   }`}
                   onClick={() => handleToolChange("pen")}
                 >
-                  <PenTool
+                  <PenTool01
                     size={16}
                     className={
                       selectedTool === "pen"
@@ -89,7 +89,7 @@ const Controls = ({
                   }`}
                   onClick={() => handleToolChange("brush")}
                 >
-                  <Brush
+                  <Brush01
                     size={16}
                     className={
                       selectedTool === "brush"

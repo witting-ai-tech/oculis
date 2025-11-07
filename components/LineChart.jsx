@@ -1,6 +1,6 @@
 import Highcharts from "highcharts";
 import HighchartsReact from "highcharts-react-official";
-import { EllipsisVertical } from "lucide-react";
+import { DotsVertical } from "@untitledui/icons";
 
 const options = {
   chart: {
@@ -50,7 +50,7 @@ export default function LineChart() {
     <div className="shadow-card relative w-full xl:w-[48%] z-0 p-4 mt-2">
       <div className="flex flex-row justify-between items-center p-2">
         <h2 className="py-2 text-[#181d27] font-semibold">Incident Trends</h2>
-        <EllipsisVertical className="text-[#a4a7ae]" size={20} />
+        <DotsVertical className="text-[#a4a7ae]" size={20} />
       </div>
       <HighchartsReact highcharts={Highcharts} options={options} />
     </div>

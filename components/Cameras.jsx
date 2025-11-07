@@ -1,14 +1,13 @@
 import React, { useState, useEffect, useRef } from "react";
 import { Button } from "@/components/ui/button";
-import { CiExport } from "react-icons/ci";
-import { Plus } from "lucide-react";
+import { Plus, Upload01 } from "@untitledui/icons";
 import { Table } from "./Table";
 import NavBtn from "./NavBtn";
 import { useSelector } from "react-redux";
-import Import from "./Import";
 import Link from "next/link";
 
 const Cameras = ({ columns, cameraData }) => {
+
   const [filteredData, setFilteredData] = useState(cameraData);
   const fileInputRef = useRef(null);
   const [editItem, setEditItem] = useState(null);
@@ -68,6 +67,9 @@ const Cameras = ({ columns, cameraData }) => {
     setEditItem(null);
   };
 
+  const getCamColumns =(handleEdit, handleDelete) => columns;
+  const camColumns = getCamColumns(handleEdit, handleDelete);
+  
   return (
     <section className="mt-8 border rounded-lg">
       <div className="flex flex-row justify-between p-8">
@@ -78,7 +80,7 @@ const Cameras = ({ columns, cameraData }) => {
             aria-label="Import"
             onClick={() => setShowImport(!showImport)}
           >
-            <CiExport className="mr-2" />
+            <Upload01 className="mr-2" />
             Import
           </Button>
           <input
@@ -91,7 +93,7 @@ const Cameras = ({ columns, cameraData }) => {
           <Link
             href="/camera-configuration/add-camera"
             className="text-sm shadow-skew rounded-[8px] py-[6px] px-3 flex flex-row items-center gap-2 bg-[#7D48DF] text-white"
-            // onClick={handleAddCamera}
+            onClick={handleAddCamera}
             aria-label="Add Camera"
           >
             <Plus size={16} />
@@ -100,11 +102,11 @@ const Cameras = ({ columns, cameraData }) => {
         </div>
       </div>
       <Table
-        columns={columns}
+        columns={camColumns}
         data={paginatedData}
         selectable
-        onDelete={handleDelete}
-        onEdit={handleEdit}
+        // onDelete={handleDelete}
+        // onEdit={handleEdit}
       />
       <NavBtn
         length={filteredData.length}
