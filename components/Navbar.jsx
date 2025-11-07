@@ -6,9 +6,6 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
 import Image from "next/image";
-import {
-  LogIn,
-} from "lucide-react";
 import {HomeLine, BarChartSquare01, Bell01,
    VideoRecorder, User01, Users01, Settings02, 
    HelpCircle, Server01, File05, ChevronDown,
@@ -17,7 +14,9 @@ import {HomeLine, BarChartSquare01, Bell01,
    Virus,
    LayersTwo01,
    Plus,
-   Command} from "@untitledui/icons"
+   Command, LogIn,
+   LogIn01,
+   LogOut01} from "@untitledui/icons"
 
 import { useSelector } from "react-redux";
 import {
@@ -36,7 +35,6 @@ import {
   SidebarGroupContent,
   SidebarGroup,
 } from "./ui/sidebar";
-import {useOnClickOutside} from "@/hooks/sideNavbar";
 import { Collapsible, CollapsibleTrigger, CollapsibleContent } from "@/components/ui/collapsible";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuTrigger, DropdownMenuItem } from "@radix-ui/react-dropdown-menu";
 
@@ -47,9 +45,26 @@ const SidebarNavigation = () => {
   const hasNewNotifications = useSelector(
     (state) => state.notification.hasNewNotifications
   );
+
   const sidebarRef = useRef(null);
   
-  useOnClickOutside(sidebarRef, ()=> setOpen(false))
+  useEffect(() => {
+    function handleClickOutside(event) {
+      if (open && sidebarRef.current && !sidebarRef.current.contains(event.target)) {
+        setOpen(false);
+      }
+    }
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [open, setOpen]);
+
+
+  const handleSidebarClick=(event)=>{
+    event.stopPropagation();
+    if(!open) setOpen(true);
+  };
 
   const navItems = [
     { name: "Overview",
@@ -63,15 +78,15 @@ const SidebarNavigation = () => {
       ]
     },
     { name: "Insights",
-      href: "/not-found",
+      href: "/insights",
       icon: (
          <BarChartSquare01 size={20} color="#717680"/>
       ),
       submenu: [
-        { id: 0, title: "Safety & Compliance", href: "/not-found" },
-        { id: 1, title: "Quality & Defects", href: "/not-found" },
-        { id: 2, title: "Workforce Monitoring", href: "/not-found" },
-        { id: 3, title: "Machine Health", href: "/not-found" },
+        { id: 0, title: "Safety & Compliance", href: "/insights/safety-and-compliance" },
+        { id: 1, title: "Quality & Defects", href: "/insights/quality-and-defects" },
+        { id: 2, title: "Workforce Monitoring", href: "/insights/workforce-management" },
+        { id: 3, title: "Machine Health", href: "/insights/machine-health" },
 
       ]
     },
@@ -103,13 +118,13 @@ const SidebarNavigation = () => {
     ]
     },
     { name: "Reports",
-      href: "/not-found",
+      href: "/reports",
       icon: (
         <File05 size={20} color="#717680"/>
       ),
       submenu: [
-      { id: 0, title: "Incident Report", href:"/not-found" },
-      { id: 1, title: "Audit Report", href:"/not-found" },
+      { id: 0, title: "Incident Report", href:"/reports/incident-report" },
+      { id: 1, title: "Audit Report", href:"/reports/audit-report" },
       ]
     },
     { name: "Camera Config",
@@ -145,14 +160,14 @@ const SidebarNavigation = () => {
       ]
     },
     { name:"System Management",
-      href:"/not-found",
+      href:"/system-management",
       icon:(
         <Server01 size={20} color="#717680"/>
       ),
       submenu:[
-        { id: 0, title: "Cameras", href: "/" },
-        { id: 1, title: "Edge Devices", href: "/" },
-        { id: 2, title: "AI Models", href: "/" },
+        { id: 0, title: "Cameras", href: "/system-management/cameras" },
+        { id: 1, title: "Edge Devices", href: "/system-management/edge-devices" },
+        { id: 2, title: "AI Models", href: "/system-management/ai-models" },
       ],
     },
     { name:"Admin Panel",
@@ -166,7 +181,7 @@ const SidebarNavigation = () => {
       ],
     },
     { name:"Support",
-      href:"/not-found",
+      href:"/support",
       icon: <HelpCircle size={20} color="#717680"/>
     }
   ];
@@ -189,11 +204,7 @@ const SidebarNavigation = () => {
   ];
 
   return (
-    <div ref={sidebarRef} onPointerDown={(e)=>{
-      if(!open) setOpen(true);
-      e.stopPropagation()
-    }}>
-    <Sidebar
+    <Sidebar ref={sidebarRef} onClick={handleSidebarClick}
       collapsible="icon"
       className="border-r-2 border-[#E9EAEB] flex flex-col h-full"
     >
@@ -365,7 +376,7 @@ const SidebarNavigation = () => {
             <DropdownMenuItem className="px-4 pb-1 pt-2">Profile</DropdownMenuItem>
                 <DropdownMenuItem className="px-4 py-1">Account</DropdownMenuItem>
                 <DropdownMenuItem className="px-4 pb-2 pt-1 text-red-600 flex items-center">
-                  <LogIn className="mr-2 w-4 h-4" />Log out
+                  <LogOut01 className="mr-2 w-4 h-4" />Log out
             </DropdownMenuItem>
           </DropdownMenuContent>
 
@@ -375,7 +386,6 @@ const SidebarNavigation = () => {
 
    
     </Sidebar>
-    </div>
    
   );
 };
