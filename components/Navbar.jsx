@@ -46,6 +46,8 @@ const SidebarNavigation = () => {
     (state) => state.notification.hasNewNotifications
   );
 
+  const [activeSubmenu, setActiveSubmenu] = useState(null);
+
   const sidebarRef = useRef(null);
   
   useEffect(() => {
@@ -61,7 +63,7 @@ const SidebarNavigation = () => {
   }, [open, setOpen]);
 
 
-  const handleSidebarClick=(event)=>{
+  const handleSidebarClick = (event)=>{
     event.stopPropagation();
     if(!open) setOpen(true);
   };
@@ -263,75 +265,78 @@ const SidebarNavigation = () => {
       {/* Main Navigation Content */}
       <SidebarContent className="flex-1 flex-col relative">
         {navGroupedItems.map((group, groupIdx)=>(
-          <>
-          <SidebarGroup key={groupIdx} className={cn("px-3 py-0", groupIdx==navGroupedItems.length-1 ? "absolute bottom-0":"")}>
+          <SidebarGroup key={groupIdx} className={cn("px-3 py-0", groupIdx == navGroupedItems.length - 1 ? "absolute bottom-0" : "")}>
             <SidebarGroupContent>
-              {group.map((navItem, navIdx)=>(
-                <SidebarMenu key={navIdx}>
-                  {navItem.submenu ? (
-                        <Collapsible>
-                        <SidebarMenuItem className="py-2">
-                          <CollapsibleTrigger asChild>
-                          <SidebarMenuButton
-                            tooltip={navItem.name}
-                            className={cn("flex justify-between items-center w-full",
-                              "group transition-colors duration-300 hover:bg-[#f8f5ff] hover:text-[#7d48df]",
-                            )}
-                          >
-                            <span className="flex items-center gap-2">
-                            <span>{navItem.icon}</span><span>{navItem.name}</span>
-                            </span>
-                            <ChevronDown className={cn("transition-transform duration-200" )} />
-                          </SidebarMenuButton>
-                          </CollapsibleTrigger>    
-                        </SidebarMenuItem>
-
-                      <CollapsibleContent>
-                        <SidebarMenuSub>
-                          {navItem.submenu.map((sub) => (
-                            <SidebarMenuSubItem key={sub.id} className="py-1">
-                              <SidebarMenuSubButton 
-                              asChild 
-                              className={cn(pathname === sub.href
-                              ? "text-[#7d48df] bg-[#f8f5ff]"
-                              : "text-grey")}>
-                              <Link href={sub.href} className={cn()}>{sub.title}</Link>
-                            </SidebarMenuSubButton>
-                            </SidebarMenuSubItem>
-                          ))}
-                        </SidebarMenuSub>
-                      </CollapsibleContent>
-                    </Collapsible> 
-                     
-                       
-                  ):(
+              {group.map((navItem, navIdx) => {
+                // Create unique key for submenu to avoid clash with sidebar toggle state
+                const submenuKey = `${navItem.name}_submenu`;
+                return  navItem.submenu ? (
+                  <Collapsible key={submenuKey}
+                    open={activeSubmenu === submenuKey}
+                    onOpenChange={(isOpen) => {
+                      if (isOpen) {
+                        setActiveSubmenu(submenuKey);
+                      } else {
+                        setActiveSubmenu(null);
+                      }
+                    }}>
                     <SidebarMenuItem className="py-2">
+                      <CollapsibleTrigger asChild>
+                        <SidebarMenuButton
+                          tooltip={navItem.name}
+                          className={cn(
+                            "flex justify-between items-center w-full",
+                            "group transition-colors duration-300 hover:bg-[#f8f5ff] hover:text-[#7d48df]"
+                          )}
+                        >
+                          <span className="flex items-center gap-2">
+                            <span>{navItem.icon}</span>
+                            <span>{navItem.name}</span>
+                          </span>
+                          <ChevronDown
+                            className={cn(
+                              "transition-transform duration-200",
+                              activeSubmenu === submenuKey ? "rotate-180" : ""
+                            )}
+                          />
+                        </SidebarMenuButton>
+                      </CollapsibleTrigger>
+                    </SidebarMenuItem>
+
+                    <CollapsibleContent>
+                      <SidebarMenuSub>
+                        {navItem.submenu.map((sub) => (
+                          <SidebarMenuSubItem key={sub.id} className="py-1">
+                            <SidebarMenuSubButton
+                              asChild
+                              className={cn(pathname === sub.href ? "text-[#7d48df] bg-[#f8f5ff]" : "text-grey")}
+                            >
+                              <Link href={sub.href}>{sub.title}</Link>
+                            </SidebarMenuSubButton>
+                          </SidebarMenuSubItem>
+                        ))}
+                      </SidebarMenuSub>
+                    </CollapsibleContent>
+                  </Collapsible>
+                ):(
+                  <SidebarMenuItem key={navIdx} className="py-2">
                     <SidebarMenuButton
-                       className={cn("group transition-colors duration-300 hover:bg-[#f8f5ff] hover:text-[#7d48df]",
+                      className={cn(
+                        "group transition-colors duration-300 hover:bg-[#f8f5ff] hover:text-[#7d48df]",
                         pathname === navItem.href ? "text-[#7d48df] bg-[#f8f5ff]" : "text-grey"
                       )}
                     >
                       <Link href={navItem.href} className="flex items-center gap-2">
-                      <span>{navItem.icon}</span><span>{navItem.name}</span>
+                        <span>{navItem.icon}</span>
+                        <span>{navItem.name}</span>
                       </Link>
-                    </SidebarMenuButton>                  
-                    </SidebarMenuItem>
-                  )}
-                  
-                </SidebarMenu>
-              ))}
+                    </SidebarMenuButton>
+                  </SidebarMenuItem>
+                );
+              })}
             </SidebarGroupContent>
           </SidebarGroup>
-
-          <SidebarSeparator
-          className={cn(
-            groupIdx==navGroupedItems.length-1 ? "hidden"
-            : groupIdx == navGroupedItems.length-2 ? "hidden":"")}/>
-          </>
-          
         ))}
-      
-
       </SidebarContent>
 
       <SidebarFooter className="px-4 py-3">
