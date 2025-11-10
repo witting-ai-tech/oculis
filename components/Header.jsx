@@ -4,8 +4,13 @@ import React, { useState } from "react";
 import { usePathname } from "next/navigation";
 import { Input } from "@/components/ui/input";
 import Drop from "./Drop";
-import { History } from "lucide-react";
-import { FilterLines, ChevronDown, MarkerPin01, RefreshCw02 } from "@untitledui/icons";
+import {
+  ListFilter,
+  ChevronDown,
+  MapPin,
+  History,
+  RefreshCw,
+} from "lucide-react";
 import { useDispatch, useSelector } from "react-redux";
 
 import { setHistory, setSites } from "../app/store/slices/filtersSlice"; // adjust path
@@ -89,7 +94,7 @@ const Header = () => {
     visibility(path);
   }, [path]);
   return (
-    <div className="flex ml-8 flex-row justify-between p-8 pl-16">
+    <div className="ml-16 flex flex-row justify-between p-8 pl-16">
       <h1 className="text-[20px] xl:text-[24px] font-semibold text-[#181d27]">
         {getTitle(path)}
       </h1>
@@ -107,7 +112,7 @@ const Header = () => {
 
         {showSites && (
           <Drop
-            icon={<MarkerPin01 />}
+            icon={<MapPin />}
             backIcon={<ChevronDown />}
             title="Sites"
             items={sites}
@@ -118,7 +123,7 @@ const Header = () => {
 
         {showFilters && (
           <Drop
-            icon={<FilterLines />}
+            icon={<ListFilter />}
             title="Filters"
             items={extraFilters}
             selectedItem="Filters"
@@ -127,7 +132,7 @@ const Header = () => {
         {showRefresh && (
           <Button variant="outline" className="ml-2 lg:hidden">
             <span>
-              <RefreshCw02 size={20} />
+              <RefreshCw size={20} />
             </span>
             Refresh
           </Button>

@@ -1,10 +1,11 @@
 import React from "react";
 import Image from "next/image";
 import Timeline from "./Timeline";
+import { AlertCircle, ShieldAlert, Info, AlertTriangle } from "lucide-react";
 import { Separator } from "@/components/ui/separator";
 import { Button } from "@/components/ui/button";
+import { Video } from "lucide-react";
 import { IoMdImage } from "react-icons/io";
-import { VideoRecorder, Image04 } from "@untitledui/icons";
 
 const Incident = ({ selectedIncident, severityIcons }) => {
   const getSeverityStyles = (severity) => {
@@ -98,10 +99,10 @@ const Incident = ({ selectedIncident, severityIcons }) => {
         />
         <div className="w-full flex flex-row items-center justify-center gap-4 relative bottom-15 xl:bottom-20 ml-auto mr-auto">
           <button className="w-32 xl:w-35 flex flex-row gap-2 items-center justify-center bg-white rounded-lg px-3 xl:px-4 py-1 xl:py-2 text-xs xl:text-sm">
-            <VideoRecorder size={20} /> View Clip
+            <Video size={20} /> View Clip
           </button>
           <button className="w-32 xl:w-35 flex flex-row gap-2 items-center justify-center bg-white rounded-lg px-3 xl:px-4 py-1 xl:py-2 text-xs xl:text-sm">
-            <Image04 size={20} /> View Image
+            <IoMdImage size={20} /> View Image
           </button>
         </div>
       </div>

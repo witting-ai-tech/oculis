@@ -1,6 +1,6 @@
 import React from "react";
 import {Button} from "@/components/Button";
-import { ArrowLeft } from "@untitledui/icons";
+import { ArrowLeft } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
 const page = () => {

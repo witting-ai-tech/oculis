@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { XClose, User01, Trash02 } from "@untitledui/icons";
+import { X, User, Info, Plus, Save, Trash } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -49,7 +49,7 @@ export default function DeleteUser({ onClose, handleFormSubmit, deleteItem }) {
           {/* Header */}
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-2 text-purple-600">
-              <User01 className="h-5 w-5" />
+              <User className="h-5 w-5" />
               <h2 className="text-lg font-medium">
                 Delete User
               </h2>
@@ -58,7 +58,7 @@ export default function DeleteUser({ onClose, handleFormSubmit, deleteItem }) {
               onClick={onClose}
               className="text-[#535862] hover:text-gray-600"
             >
-              <XClose className="h-5 w-5" />
+              <X className="h-5 w-5" />
             </button>
           </div>
 
@@ -173,7 +173,7 @@ export default function DeleteUser({ onClose, handleFormSubmit, deleteItem }) {
             className="w-full bg-[#7d48df] hover:bg-[#6037ac] text-white flex items-center gap-2"
             onClick={handleDeleteUser}
           >
-            <Trash02 />
+            <Trash />
             Delete User
           </Button>
           <Button

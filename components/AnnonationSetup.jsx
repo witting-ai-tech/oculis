@@ -4,6 +4,7 @@ import Controls from "@/components/Controls";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
+import { ArrowLeft } from "lucide-react";
 import {
   Accordion,
   AccordionContent,

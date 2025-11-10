@@ -1,9 +1,11 @@
 "use client";
 import React, { useState, useEffect } from "react";
-import { ChevronRight, FilterLines, SearchLg, List, VideoRecorder, Grid01 } from "@untitledui/icons";
+import Image from "next/image";
+import { ChevronRight, ListFilter, Search, List } from "lucide-react";
 import { IoGridOutline } from "react-icons/io5";
 
 import Drop from "@/components/Drop";
+import Navbar from "@/components/Navbar";
 import { Input } from "@/components/ui/input";
 import Monitoring from "@/components/Monitoring";
 import Livepage from "@/components/Livepage";
@@ -65,12 +67,34 @@ const Page = () => {
 
   return (
     <>
-      <section className="flex flex-row h-screen">
+      <Navbar />
+      <section className="flex flex-row ml-16 h-screen">
         {/* sidebar */}
         <SecSidebar
           title={
             <>
-              <VideoRecorder />
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="20"
+                height="20"
+                viewBox="0 0 20 20"
+                fill="none"
+              >
+                <path
+                  d="M18.3337 7.44216C18.3337 6.93731 18.3337 6.68489 18.2338 6.568C18.1472 6.46658 18.0173 6.41276 17.8843 6.42322C17.7311 6.43528 17.5526 6.61377 17.1956 6.97075L14.167 9.99935L17.1956 13.0279C17.5526 13.3849 17.7311 13.5634 17.8843 13.5755C18.0173 13.5859 18.1472 13.5321 18.2338 13.4307C18.3337 13.3138 18.3337 13.0614 18.3337 12.5565V7.44216Z"
+                  stroke="#A4A7AE"
+                  strokeWidth="1.67"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+                <path
+                  d="M1.66699 8.16602C1.66699 6.76588 1.66699 6.06582 1.93948 5.53104C2.17916 5.06063 2.56161 4.67818 3.03202 4.4385C3.5668 4.16602 4.26686 4.16602 5.66699 4.16602H10.167C11.5671 4.16602 12.2672 4.16602 12.802 4.4385C13.2724 4.67818 13.6548 5.06063 13.8945 5.53104C14.167 6.06582 14.167 6.76588 14.167 8.16602V11.8327C14.167 13.2328 14.167 13.9329 13.8945 14.4677C13.6548 14.9381 13.2724 15.3205 12.802 15.5602C12.2672 15.8327 11.5671 15.8327 10.167 15.8327H5.66699C4.26686 15.8327 3.5668 15.8327 3.03202 15.5602C2.56161 15.3205 2.17916 14.9381 1.93948 14.4677C1.66699 13.9329 1.66699 13.2328 1.66699 11.8327V8.16602Z"
+                  stroke="#A4A7AE"
+                  strokeWidth="1.67"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+              </svg>
               <h4>Monitoring</h4>
             </>
           }
@@ -81,7 +105,28 @@ const Page = () => {
         {/* main content */}
         <main className="p-8 w-full flex-1 overflow-y-auto">
           <div className="flex flex-row items-center gap-2 mb-6">
-            <VideoRecorder size={20}/>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="20"
+              height="20"
+              viewBox="0 0 20 20"
+              fill="none"
+            >
+              <path
+                d="M18.3337 7.44216C18.3337 6.93731 18.3337 6.68489 18.2338 6.568C18.1472 6.46658 18.0173 6.41276 17.8843 6.42322C17.7311 6.43528 17.5526 6.61377 17.1956 6.97075L14.167 9.99935L17.1956 13.0279C17.5526 13.3849 17.7311 13.5634 17.8843 13.5755C18.0173 13.5859 18.1472 13.5321 18.2338 13.4307C18.3337 13.3138 18.3337 13.0614 18.3337 12.5565V7.44216Z"
+                stroke="#535862"
+                strokeWidth="1.67"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+              <path
+                d="M1.66699 8.16602C1.66699 6.76588 1.66699 6.06582 1.93948 5.53104C2.17916 5.06063 2.56161 4.67818 3.03202 4.4385C3.5668 4.16602 4.26686 4.16602 5.66699 4.16602H10.167C11.5671 4.16602 12.2672 4.16602 12.802 4.4385C13.2724 4.67818 13.6548 5.06063 13.8945 5.53104C14.167 6.06582 14.167 6.76588 14.167 8.16602V11.8327C14.167 13.2328 14.167 13.9329 13.8945 14.4677C13.6548 14.9381 13.2724 15.3205 12.802 15.5602C12.2672 15.8327 11.5671 15.8327 10.167 15.8327H5.66699C4.26686 15.8327 3.5668 15.8327 3.03202 15.5602C2.56161 15.3205 2.17916 14.9381 1.93948 14.4677C1.66699 13.9329 1.66699 13.2328 1.66699 11.8327V8.16602Z"
+                stroke="#535862"
+                strokeWidth="1.67"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+            </svg>
             <span>
               <ChevronRight size={16} className="text-[#D5D7DA]" />
             </span>
@@ -102,7 +147,7 @@ const Page = () => {
               </h1>
               <div className="w-full flex flex-row mt-8 gap-[26px]">
                 <div className="relative w-full text-[#717680]">
-                  <SearchLg
+                  <Search
                     size={20}
                     className="absolute left-3 top-1/2 -translate-y-1/2 pointer-events-none"
                   />
@@ -113,7 +158,7 @@ const Page = () => {
                 </div>
 
                 <Drop
-                  icon={<FilterLines />}
+                  icon={<ListFilter />}
                   title="Filters"
                   items={extraFilters}
                   selectedItem="Filters"
@@ -124,7 +169,7 @@ const Page = () => {
                 >
                   {view ? (
                     <>
-                      <Grid01 size={16} />
+                      <IoGridOutline size={16} />
                       Grid View
                     </>
                   ) : (

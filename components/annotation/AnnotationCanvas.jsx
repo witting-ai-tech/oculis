@@ -6,8 +6,7 @@ import {
   useCallback,
 } from "react";
 import Image from "next/image";
-import { Undo, Redo } from "lucide-react";
-import { Plus, Minus, RefreshCcw01  } from "@untitledui/icons";
+import { Plus, Minus, Undo, Redo, RotateCcw } from "lucide-react";
 import { Tip } from "../Tip";
 import CanvasShapes from "./CanvasShapes";
 import EditLabel from "@/components/forms/EditLabel";
@@ -588,7 +587,7 @@ export default function AnnotationCanvas({
                       handleReset();
                     }}
                   >
-                    <RefreshCcw01 size={20} />
+                    <RotateCcw size={20} />
                   </button>
                 }
                 content="Reset"

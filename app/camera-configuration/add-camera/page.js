@@ -6,8 +6,7 @@ import { steps, cameraFormInputs } from "@/data/cameraData";
 import { snakeToTitle } from "@/lib/utils";
 import DynamicForm2 from "@/components/forms/DynamicForm2";
 import AnnonationSetup from "@/components/AnnonationSetup";
-import { Tool01, ArrowNarrowRight, ArrowNarrowLeft, SkipForward  } from "@untitledui/icons";
-
+import { Wrench, ArrowRight, SkipForward, ArrowLeft } from "lucide-react";
 import { useSessionStorage } from "@/hooks/useSessionStorage";
 import Image from "next/image";
 import Link from "next/link";
@@ -104,7 +103,7 @@ const Page = () => {
                 className="py-[22px] rounded-[8px] font-semibold hover:opacity-90"
                 onClick={() => setActiveStep((prev) => prev + 1)}
               >
-                <Tool01 size={20} /> Test Connection
+                <Wrench size={20} /> Test Connection
               </Button>
             </Link>
           }
@@ -137,7 +136,7 @@ const Page = () => {
             className="px-[14px] py-[10px] w-fit"
             onClick={handleRegionSubmit}
           >
-            <ArrowNarrowRight size={20} className="ml-2" />
+            <ArrowRight size={20} className="ml-2" />
             Next
           </Button>
         }
@@ -157,7 +156,7 @@ const Page = () => {
           className="px-[14px] py-[10px] w-fit"
           onClick={() => setActiveStep((prev) => prev - 1)}
         >
-          <ArrowNarrowLeft size={20} className="ml-2" />
+          <ArrowLeft size={20} className="ml-2" />
           Previous
         </Button>
       </AnnonationSetup>
@@ -243,7 +242,7 @@ const Page = () => {
                   className="px-[14px] py-[10px] w-fit"
                   onClick={handleModelsSubmit}
                 >
-                  <ArrowNarrowRight size={20} className="ml-2" />
+                  <ArrowRight size={20} className="ml-2" />
                   Next
                 </Button>
               }
@@ -253,7 +252,7 @@ const Page = () => {
                 className="px-[14px] py-[10px] w-fit"
                 onClick={() => setActiveStep((prev) => prev - 1)}
               >
-                <ArrowNarrowLeft size={20} className="ml-2" />
+                <ArrowLeft size={20} className="ml-2" />
                 Previous
               </Button>
             </AnnonationSetup>
@@ -402,7 +401,7 @@ const Page = () => {
                 className="px-[14px] py-[10px] w-fit"
                 onClick={() => setActiveStep((prev) => prev - 1)}
               >
-                <ArrowNarrowLeft size={20} className="ml-2" />
+                <ArrowLeft size={20} className="ml-2" />
                 Previous
               </Button>
 
@@ -422,7 +421,8 @@ const Page = () => {
 
   return (
     <>
-      <section className="xl:ml-16 pl-16 pt-12">
+      <Navbar />
+      <section className="ml-12 xl:ml-16 pl-16 pt-12">
         {/* stepper */}
 
         <div className="w-full flex flex-row items-start justify-center gap-4 mb-8 relative">
@@ -495,3 +495,10 @@ const Page = () => {
 
 export default Page;
 
+// <Button
+//   type="button"
+//   className="rounded-[8px] font-semibold hover:opacity-90 bg-gray-600 hover:bg-gray-700"
+//   onClick={logAllData}
+// >
+//   Log All Data
+// </Button>

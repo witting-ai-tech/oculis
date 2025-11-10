@@ -1,8 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
-import { ChevronDown, Save02, Trash01 } from "@untitledui/icons";
-
+import { ChevronDown, Save, Trash2 } from "lucide-react";
 import AnnotationCanvas from "@/components/annotation/AnnotationCanvas";
 import DetectNav from "@/components/DetectNav";
 import Controls from "@/components/Controls";
@@ -219,7 +218,7 @@ const Page = () => {
           setSelectedTool={setSelectedTool}
           primaryAction={
             <Button className="px-[14px] py-[10px] w-[150px]">
-              <Save02 size={20} className="ml-2" />
+              <Save size={20} className="ml-2" />
               Save
             </Button>
           }
@@ -229,7 +228,7 @@ const Page = () => {
               className="ml-4 px-[14px] py-[10px] w-[150px]"
             >
               Discard
-              <Trash01 size={20} className="ml-2" />
+              <Trash2 size={20} className="ml-2" />
             </Button>
           }
         />
