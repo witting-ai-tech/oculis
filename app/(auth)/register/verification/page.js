@@ -3,6 +3,7 @@
 import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { IoMdArrowBack } from "react-icons/io";
 import { useRouter } from "next/navigation";
 import ActionButton from "@/components/ActionButton";
 import {
@@ -11,7 +12,6 @@ import {
   InputOTPSeparator,
   InputOTPSlot,
 } from "@/components/ui/input-otp";
-import { ArrowLeft } from "@untitledui/icons";
 
 export default function Page() {
   const [email] = useState("olivia@untitledui.com"); // Replace with dynamic email if needed
@@ -70,7 +70,7 @@ export default function Page() {
           href="/login"
           className="mt-8 flex flex-row gap-2 text-sm text-[#535862] font-semibold hover:underline"
         >
-          <ArrowLeft size={20} />
+          <IoMdArrowBack size={20} />
           Back to log in
         </Link>
       </div>

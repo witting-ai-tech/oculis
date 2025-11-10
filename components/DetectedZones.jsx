@@ -2,7 +2,7 @@ import React, { useState, useRef } from "react";
 import NavBtn from "./NavBtn";
 import { Button } from "@/components/ui/button";
 import { CiExport } from "react-icons/ci";
-import { Plus } from "@untitledui/icons";
+import { Plus, CircleHelp } from "lucide-react";
 import { Table } from "./Table";
 // import AddDetectionZones from "./AddDetectionZones";
 import Import from "./Import";

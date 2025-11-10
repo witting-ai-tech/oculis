@@ -1,7 +1,7 @@
 import React, { useState, useRef } from "react";
 import { Button } from "@/components/ui/button";
 import { CiExport } from "react-icons/ci";
-import { Plus, Upload01} from "@untitledui/icons";
+import { Plus, Trash2, Pen } from "lucide-react";
 import NavBtn from "./NavBtn";
 import AddUser from "./forms/AddUser";
 import { Table } from "./Table";
@@ -59,7 +59,7 @@ const Users = ({ columns, userData }) => {
             aria-label="Import"
             onClick={() => setShowImport(!showImport)}
           >
-            <Upload01 className="mr-2" />
+            <CiExport className="mr-2" />
             Import
           </Button>
           <input

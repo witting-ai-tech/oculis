@@ -1,7 +1,7 @@
 "use client";
 import Image from "next/image";
 import React, { useRef, useState } from "react";
-import { SearchLg, ChevronRight, ArrowLeft, User01, VideoRecorder } from "@untitledui/icons";
+import { Video, User, ArrowLeft, Search, ChevronRight } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import Player from "@/components/player/Player";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
@@ -72,7 +72,7 @@ const Livepage = ({ data, card, setLive }) => {
           <ArrowLeft className="h-5 w-5" />
         </button>
         <div className="relative w-full max-w-[500px] text-[#717680]">
-          <SearchLg
+          <Search
             size={20}
             className="absolute left-3 top-1/2 -translate-y-1/2 pointer-events-none"
           />
@@ -144,7 +144,7 @@ const Livepage = ({ data, card, setLive }) => {
                 </td>
                 <td>
                   <button className="px-3 py-2 border border-[#D5D7DA]  rounded-[8px]">
-                    <User01 size={16} className="text-[#535862]" />
+                    <User size={16} className="text-[#535862]" />
                   </button>
                   <button className="ml-4 px-3 py-2 bg-[#7D48DF] rounded-[8px] border-2">
                     <Image

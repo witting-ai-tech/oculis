@@ -6,7 +6,6 @@ import { BsThreeDotsVertical } from "react-icons/bs";
 import Link from "next/link";
 import LineChartSimple from "./charts/LineSimpleChart";
 import Image from "next/image";
-import { ArrowDown, ArrowUp, DotsVertical } from "@untitledui/icons";
 
 // helpers
 function getRandomInt(min = 1, max = 20) {
@@ -53,7 +52,7 @@ const DashCard = ({card, type="dash"}) => {
         <h1 className="text-[#252b37] text-md xl:text-lg font-semibold">
           {card.title}
         </h1>
-        <DotsVertical className="text-[#a4a7ae]" />
+        <BsThreeDotsVertical className="text-[#a4a7ae]" />
       </div>
 
       <h1 className="text-[#252b37] text-2xl xl:text-3xl font-bold">{card.value}</h1>
@@ -62,9 +61,9 @@ const DashCard = ({card, type="dash"}) => {
         <div className="flex flex-col lg:flex-row items-center gap-1">
           <div className = "flex flex-row gap-1 items-center">
             {isPositive ? (
-              <ArrowUp className="text-[#17b26a]" />
+              <FaArrowUp className="text-[#17b26a]" />
             ) : (
-              <ArrowDown className="text-[#d9534f]" />
+              <FaArrowDown className="text-[#d9534f]" />
             )}
             <span className={isPositive ? "text-[#067647]" : "text-[#d9534f]"}>
               {formattedPercentageChange}%
@@ -102,15 +101,15 @@ const DashCard = ({card, type="dash"}) => {
             height={44}
             className="w-[44px] h-[44px]"
           />
-          <DotsVertical className="text-[#a4a7ae] cursor-pointer" />
+          <BsThreeDotsVertical className="text-[#a4a7ae] cursor-pointer" />
         </div>
         <h1 className="text-[#252b37] text-[16px] font-semibold">{card.title}</h1>
         <h1 className="text-[#252b37] text-3xl font-bold">{card.value}</h1>
         <div className="text-sm flex items-center gap-1">
           {isPositive ? (
-            <ArrowUp className="text-[#17b26a]" />
+            <FaArrowUp className="text-[#17b26a]" />
           ) : (
-            <ArrowDown className="text-[#d9534f]" />
+            <FaArrowDown className="text-[#d9534f]" />
           )}
           <span className={isPositive ? "text-[#067647]" : "text-[#d9534f]"}>
             {formattedPercentageChange}%

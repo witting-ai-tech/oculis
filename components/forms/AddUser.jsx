@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { XClose, User01, Plus } from "@untitledui/icons";
+import { X, User, Info, Plus, Save } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -60,7 +60,7 @@ export default function AddUser({ onClose, handleFormSubmit, editItem }) {
           {/* Header */}
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-2 text-purple-600">
-              <User01 className="h-5 w-5" />
+              <User className="h-5 w-5" />
               <h2 className="text-lg font-medium">
                 {editItem ? "Edit" : "Add New"} User
               </h2>
@@ -69,7 +69,7 @@ export default function AddUser({ onClose, handleFormSubmit, editItem }) {
               onClick={onClose}
               className="text-[#535862] hover:text-gray-600"
             >
-              <XClose className="h-5 w-5" />
+              <X className="h-5 w-5" />
             </button>
           </div>
 

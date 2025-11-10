@@ -4,8 +4,8 @@ import { useState } from "react";
 import Image from "next/image";
 import { FcGoogle } from "react-icons/fc";
 import Link from "next/link";
+import { IoMdArrowBack } from "react-icons/io";
 import { useRouter } from "next/navigation";
-import { ArrowLeft } from "@untitledui/icons";
 
 export default function Page() {
   const [email, setEmail] = useState("");
@@ -48,7 +48,7 @@ export default function Page() {
           href="/login"
           className="mt-8 flex flex-row gap-2 text-sm text-[#535862] font-semibold hover:underline"
         >
-          <ArrowLeft size={20} />
+          <IoMdArrowBack size={20} />
           Back to log in
         </Link>
       </div>

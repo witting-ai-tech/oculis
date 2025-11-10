@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from "react";
 import { alertData } from "@/data/alertData";
 import { Button } from "@/components/ui/button";
-import { RefreshCcw02, ChevronDown, ChevronUp, ChevronRight } from "@untitledui/icons";
+import { RefreshCw, ChevronDown, ChevronUp, ChevronRight } from "lucide-react";
 import AlertCard from "@/components/AlertCard";
 import Incident from "@/components/Incident";
 import Image from "next/image";
@@ -125,7 +125,7 @@ const AlertTimelinePage = () => {
                   <div className="hidden lg:flex flex-row items-center">
                     <Button variant="outline" className="ml-2">
                       <span>
-                        <RefreshCcw02 size={20} />
+                        <RefreshCw size={20} />
                       </span>
                       Refresh
                     </Button>
@@ -154,8 +154,10 @@ const AlertTimelinePage = () => {
             selectedIncident={selectedIncident}
             severityIcons={severityIcons}
           />
-          <div className={`absolute right-0 bottom-0 z-10 w-full`}>
-          <div className="control bg-white w-full flex flex-row items-center gap-3 justify-center px-12 pt-[18px] mt-8 text-sm">
+        </div>
+
+        <div className={`fixed right-0 bottom-0 z-10 w-[calc(55%-186px)]`}>
+          <div className="control bg-white w-full flex flex-row items-center gap-3 justify-center px-12 py-[18px] mt-8 text-sm">
             <DropdownMenu open={open} onOpenChange={setOpen}>
               <DropdownMenuTrigger
                 className={cn(
@@ -200,9 +202,6 @@ const AlertTimelinePage = () => {
             </DropdownMenu>
           </div>
         </div>
-        </div>
-
-        
       </section>
     </section>
   );

@@ -1,6 +1,6 @@
 import Highcharts from "highcharts";
 import HighchartsReact from "highcharts-react-official";
-import { DotsVertical } from "@untitledui/icons";
+import { EllipsisVertical } from "lucide-react";
 
 const options = {
   chart: {
@@ -61,7 +61,7 @@ export default function BarChart() {
         <h2 className="py-2 text-[#181d27] font-semibold">
           Incident Severity Breakdown
         </h2>
-        <DotsVertical className="text-[#a4a7ae]" size={20} />
+        <EllipsisVertical className="text-[#a4a7ae]" size={20} />
       </div>
       <HighchartsReact highcharts={Highcharts} options={options} />
     </div>
