@@ -20,7 +20,7 @@ export default function AdminPanelLayout({ children }) {
 
   return (
     <AdminPanelContext.Provider value={contextValue}>
-      <Navbar />
+      {/* <Navbar /> */}
       <section className="flex flex-row ml-16 h-screen">
         {/* sidebar */}
         <SecSidebar

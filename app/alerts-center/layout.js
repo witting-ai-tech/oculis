@@ -19,7 +19,7 @@ export default function AlertsCenterLayout({ children }) {
 
   return (
     <AlertsCenterContext.Provider value={contextValue}>
-      <Navbar />
+      {/* <Navbar /> */}
       <section className="flex flex-row ml-16 h-screen">
         {/* sidebar */}
         <SecSidebar

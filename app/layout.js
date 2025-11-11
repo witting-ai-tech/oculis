@@ -1,9 +1,11 @@
 import { Geist, Geist_Mono, Inter } from "next/font/google";
 import "./globals.css";
 import ProviderWrapper from "@/components/ProviderWrapper";
-import Navbar from "@/components/Navbar";
 import Header from "@/components/Header";
 import NotificationManager from "@/components/NotificationManager";
+import { SidebarInset, SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
+import AppSidebar from "@/components/navbar/app-sidebar";
+import Breadcrumbs from "@/components/navbar/breadcrumbs";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -23,8 +25,19 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <body className={` ${inter.variable} antialiased `}>
         <ProviderWrapper>
-          <NotificationManager />
-          {children}
+          <SidebarProvider style={{
+              "--sidebar-width": "calc(var(--spacing) * 72)",
+              "--header-height": "calc(var(--spacing) * 12)",
+            }}
+          >
+            <AppSidebar variant="inset"/>
+            <SidebarInset>
+              <Breadcrumbs />
+              <NotificationManager />
+              {children}
+            </SidebarInset>
+            
+          </SidebarProvider>
         </ProviderWrapper>
       </body>
     </html>
