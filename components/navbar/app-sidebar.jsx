@@ -18,16 +18,16 @@ import {
   SidebarContent,
   SidebarFooter,
   SidebarHeader,
-  SidebarMenu,
-  SidebarMenuButton,
-  SidebarMenuItem,
   SidebarRail,
+  SidebarSeparator,
+  useSidebar,
 } from '@/components/ui/sidebar';
 import NavUser from './nav-user';
 import TeamSwitcher from './team-switcher';
 import { AudioWaveform, GalleryVerticalEnd } from 'lucide-react';
 
 const AppSidebar = ({...props}) => {
+    const { open } =useSidebar();
     const pathname = usePathname();
     const hasNewNotifications = useSelector(
         (state) => state.notification.hasNewNotifications
@@ -36,9 +36,9 @@ const AppSidebar = ({...props}) => {
     const data = 
     {
         user:{
-            name:"shadcn",
-            email:"shadcn@email.com",
-            avatar:"/avatars/shadcn.jpg",
+            name:"Olivia TRhye",
+            email:"olivia@email.com",
+            avatar:"https://randomuser.me/api/portraits/women/32.jpg",
         },
         teams:[
             {
@@ -57,7 +57,7 @@ const AppSidebar = ({...props}) => {
             plan: "Free",
             },
         ],
-        navMain:[
+        navGroup1:[
             { name: "Overview",
             href: "/",
             icon: (
@@ -69,6 +69,8 @@ const AppSidebar = ({...props}) => {
                 { id: 1, title: "System Dashboard ", href: "/" },
             ]
             },
+        ],
+        navGroup2:[
             { name: "Insights",
             href: "/insights",
             icon: (
@@ -123,6 +125,8 @@ const AppSidebar = ({...props}) => {
             href: "/camera-configuration",
             icon: (<Sliders03 size={20}  color="#717680"/>),
             },
+        ],
+        navGroup3:[
             { name: "People",
             href: "/users-and-roles",
             icon: <Users01 size={20}  color="#717680"/>,
@@ -130,8 +134,9 @@ const AppSidebar = ({...props}) => {
                 {id:0, title:"Users", href:"/users-and-roles"},
                 {id:1, title:"Employs", href:"/admin-panel/employees"}
             ]
-            }],
-        navSecondary:[
+            }
+        ],
+        navGroupBottom:[
             { name:"System Management",
             href:"/system-management",
             icon:(
@@ -161,22 +166,28 @@ const AppSidebar = ({...props}) => {
     }
 
   return (<>
-    <Sidebar collapsible="offcanvas" {...props}>
-        <SidebarHeader>
-         <TeamSwitcher teams={data.teams}/>
-        </SidebarHeader>
+        <Sidebar collapsible="icon" {...props}>
+      
+            <SidebarHeader className="!bg-white">
+                <TeamSwitcher teams={data.teams}/>
+            </SidebarHeader>
 
-        <SidebarContent>
-            <NavMain items={data.navMain} className=""/>
-            <NavMain items={data.navSecondary} className="mt-auto" />
-            {/* <NavSecondary items={data.navSecondary} className="mt-auto"/> */}
-        </SidebarContent>
+                        <SidebarContent>
+                            <NavMain items={data.navGroup1} className=""/>
+                            <SidebarSeparator className={cn(open?"!w-[248px] -my-2":"ml-5.5 !w-[16px]")}/>
+                            <NavMain items={data.navGroup2} className=""/>
+                            <SidebarSeparator className={cn(open?"!w-[248px] -my-2":"ml-5.5 !w-[16px]")}/>
+                            <NavMain items={data.navGroup3} className=""/>
+                            
+                            <NavMain items={data.navGroupBottom} className="mt-auto" />
+                        </SidebarContent>
+            
+                        <SidebarFooter>
+                            <NavUser user={data.user}/>
+                        </SidebarFooter>
+                        <SidebarRail/>
 
-        <SidebarFooter>
-            <NavUser user={data.user}/>
-        </SidebarFooter>
-        <SidebarRail/>
-
+                
     </Sidebar>
   </>)
 }

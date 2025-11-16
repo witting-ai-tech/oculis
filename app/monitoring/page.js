@@ -5,7 +5,6 @@ import { ChevronRight, ListFilter, Search, List } from "lucide-react";
 import { IoGridOutline } from "react-icons/io5";
 
 import Drop from "@/components/Drop";
-import Navbar from "@/components/Navbar";
 import { Input } from "@/components/ui/input";
 import Monitoring from "@/components/Monitoring";
 import Livepage from "@/components/Livepage";
@@ -67,7 +66,7 @@ const Page = () => {
 
   return (
     <>
-      <Navbar />
+      {/* <Navbar /> */}
       <section className="flex flex-row ml-16 h-screen">
         {/* sidebar */}
         <SecSidebar

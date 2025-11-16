@@ -12,6 +12,7 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import { modelsConfig } from "@/data/cameraData";
+import { cn } from "@/lib/utils";
 const AnnonationSetup = ({
   selectedColor,
   selectedTool,

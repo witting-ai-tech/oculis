@@ -1,11 +1,11 @@
 import { Geist, Geist_Mono, Inter } from "next/font/google";
 import "./globals.css";
 import ProviderWrapper from "@/components/ProviderWrapper";
-import Header from "@/components/Header";
 import NotificationManager from "@/components/NotificationManager";
 import { SidebarInset, SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
 import AppSidebar from "@/components/navbar/app-sidebar";
 import Breadcrumbs from "@/components/navbar/breadcrumbs";
+import { Separator } from "@/components/ui/separator";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -32,7 +32,11 @@ export default function RootLayout({ children }) {
           >
             <AppSidebar variant="inset"/>
             <SidebarInset>
-              <Breadcrumbs />
+              <header className="bg-white sticky top-0 flex h-16 shrink-0 items-center gap-2 border-b px-4">
+                <SidebarTrigger className="-ml-1"/>
+                <Separator orientation="vertical" className="mr-2 h-4" />
+                <Breadcrumbs />
+              </header>
               <NotificationManager />
               {children}
             </SidebarInset>
