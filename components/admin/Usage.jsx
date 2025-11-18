@@ -114,7 +114,7 @@ const Usage = () => {
               Renewal: March 15, 2026 •Annual Billing{" "}
             </p>
           </div>
-          <Button className="bg-accent text-white">Upgrade Plan</Button>
+          <Button className="bg-purple-700 text-white">Upgrade Plan</Button>
         </div>
       </div>
     </section>
