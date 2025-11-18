@@ -5,7 +5,8 @@ import Link from "next/link";
 
 import { SidebarGroup, SidebarMenu, SidebarGroupContent, SidebarMenuItem, SidebarMenuButton, SidebarMenuSub, SidebarMenuSubItem, SidebarMenuSubButton, useSidebar } from '../ui/sidebar';
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '../ui/collapsible';
-import { ChevronDown } from '@untitledui/icons';
+import { ChevronDown, ChevronRight } from '@untitledui/icons';
+import { ChevronsRight } from 'lucide-react';
 
 const NavMain = ({items, ...props}) => {
     const pathname = usePathname();
@@ -13,53 +14,75 @@ const NavMain = ({items, ...props}) => {
 
     return (<>
     <SidebarGroup {...props}>
-        <SidebarGroupContent className="flex-col gap-2">
-            <SidebarMenu>
-                {items.map((item)=>(
-                    <Collapsible key={item.name} asChild 
-                    //defaultOpen={item.isActive}
-                    className="group/collapsible">
-                        <SidebarMenuItem className={!open?"pl-1 py-1":""}>
+        <SidebarMenu>
+            {items.map((item)=>(
+                <Collapsible key={item.name} asChild
+                 defaultOpen={item.iaActive}
+                 className="group/collapsible"
+                >
+                    <SidebarMenuItem>
+                        {item?.submenu ? (
                             <CollapsibleTrigger asChild>
-                            <SidebarMenuButton tooltip={item.name}
-                            className={cn("!text-sm group transition-colors duration-300 hover:bg-[#f8f5ff] hover:text-[#7d48df] justify-between",
-                                "font-inter font-semibold py-5.5 text-base",
-                                 pathname === item.href ? "text-[#7d48df] bg-[#f8f5ff]" : "text-gray-700",
-                                 
-                             )}
-                            >
-                                <Link href={item.href} className="flex items-center gap-3 ">
-                                    <span>{item.icon}</span>
-                                    <span>{item.name}</span>
-                                </Link>
-                                {item.submenu && <ChevronDown color="gray"
-                                    className={cn(
-                                    "transition-transform duration-200",
-                                    "group-data-[state=open]/collapsible:rotate-180",
+                                <SidebarMenuButton
+                                tooltip={item.name}
+                                className="!text-sm !text-[#414651] hover:bg-white"
+                                >
+                                    {item.icon && <div className={`w-5 h5 
+                                        ${(pathname.match(/^\/[^\/]+/)?.[0] ?? '')=== (item.href.match(/^\/[^\/]+/)?.[0] ?? '')  ? "text-[#7d48df]" : "text-[#717680]"}
+                                        `}>
+                                            {item.icon}
+                                        </div>
+                                    }
+                                    <span>{item.name}
+                                    </span>
+                                    {item?.submenu && (
+                                        <ChevronRight className="ml-auto transition-transform duration-200 group-data-[state=open]/collapsible:rotate-90" />
                                     )}
-                                />}
-                            </SidebarMenuButton>
+                                </SidebarMenuButton>
                             </CollapsibleTrigger>
+                        ):(
+                            <Link href={item.href}
+                                className={`group text-sm px-[6px] py-2 flex flex-row gap gap-3 items-center justify-left transition-transform rounded-[6px] hover:bg-white 
+                                    ${ pathname === item.href ? "text-[#7d48df]" : "text-[#414651]"
+                                }`}
+                            >
+                                {item.icon && (
+                                    <div className={`w-5 h5 
+                                    ${pathname === item.href 
+                                    ? "text-[#7d48df]" 
+                                    : "text-[#717680]"}`}>
+                                        {item.icon}
+                                    </div>
+                                )}
+                                <span>{item.name}</span>
+                                {item?.submenu && 
+                                    <div className="ml-auto">
+                                        <ChevronsRight className="transition-transform duration-200 group-data-[state=open]/collapsible:rotate-90" />
+                                    </div>
+                                }
+                            </Link>
+                        )}
                         <CollapsibleContent>
                         <SidebarMenuSub>
                             {item.submenu?.map((subItem)=>(
                                 <SidebarMenuSubItem key={subItem.id}>
                                     <SidebarMenuSubButton asChild
-                                      className={cn( "font-semibold py-4 pl-4 text-sm",
-                                        pathname === subItem.href ? "text-[#7d48df] bg-[#f8f5ff]" : "text-gray-700")}
-                                    >
-                                        <Link href={subItem.href}>{subItem.title}</Link>
+                                     className="!text-sm !text-[#414651] hover:bg-white">
+                                        <Link href={subItem.href}>
+                                            <span className={`${pathname === subItem.href 
+                                    ? "!text-[#7d48df]" 
+                                    : "text-[#414651]"}`}>{subItem.title}</span>
+                                        </Link>
                                     </SidebarMenuSubButton>
                                 </SidebarMenuSubItem>
                             ))}
-
                         </SidebarMenuSub>
                         </CollapsibleContent>
-                        </SidebarMenuItem>
-                    </Collapsible>
-                ))}
-            </SidebarMenu>
-        </SidebarGroupContent>
+                    </SidebarMenuItem>
+
+                </Collapsible>
+            ))}
+        </SidebarMenu>
     </SidebarGroup>
   </>)
 }

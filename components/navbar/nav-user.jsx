@@ -21,9 +21,10 @@ import {
   SidebarMenuItem,
   useSidebar,
 } from '@/components/ui/sidebar';
-import { CreditCard01, DotsVertical, LogOut01, NotificationBox, UserCircle } from '@untitledui/icons';
-import { ChevronsUpDown } from 'lucide-react';
+import { Bell01, CheckVerified01, CreditCard01, DotsVertical, LogOut01, NotificationBox, UserCircle } from '@untitledui/icons';
+import { ChevronsUpDown, Sparkles } from 'lucide-react';
 import { cn } from '@/lib/utils';
+import Link from 'next/link';
 
 const NavUser = ({user}) => {
     const {state, isMobile} = useSidebar();
@@ -38,10 +39,10 @@ const NavUser = ({user}) => {
                 "w-full data-[state=open]:bg-[#FDFDFD] rounded-[12px] flex items-center gap-3 ",
                 state !== "collapsed"
                   ? "p-3 bg-white border border-[#E9EAEB]"
-                  : "px-2 py-3"
+                  : "p-0"
               )}
             >
-              <Avatar className="h-9 w-9 rounded-3xl">
+              <Avatar className="h-8 w-8 rounded-3xl">
                 <AvatarImage src={user.avatar} alt={user.name} />
                 <AvatarFallback className="rounded-2xl">CN</AvatarFallback>
               </Avatar>
@@ -51,7 +52,7 @@ const NavUser = ({user}) => {
                   {user.email}
                 </span>
               </div>
-              <ChevronsUpDown color="grey" className="ml-auto size-5" />
+              <ChevronsUpDown className="ml-auto size-4" />
             </button>
           </DropdownMenuTrigger>
           <DropdownMenuContent
@@ -61,23 +62,28 @@ const NavUser = ({user}) => {
             sideOffset={4}
           >
             <DropdownMenuLabel className="p-0 font-normal">
-              <div className="flex items-center gap-2 px-2 py-2 text-left text-sm">
-                <Avatar className="h-8 w-8 rounded-2xl">
+              <div className="flex items-center gap-2 px-1 py-1.5 text-left text-sm">
+                <Avatar className="h-8 w-8 rounded-lg">
                   <AvatarImage src={user.avatar} alt={user.name} />
-                  <AvatarFallback className="rounded-2xl">CN</AvatarFallback>
+                  <AvatarFallback className="rounded-lg">CN</AvatarFallback>
                 </Avatar>
                 <div className="grid flex-1 text-left text-sm leading-tight">
-                  <span className="truncate font-semibold">{user.name}</span>
-                  <span className="text-muted-foreground font-medium truncate text-xs">
-                    {user.email}
-                  </span>
+                  <span className="truncate font-medium">{user.name}</span>
+                  <span className="truncate text-xs">{user.email}</span>
                 </div>
               </div>
             </DropdownMenuLabel>
             <DropdownMenuSeparator />
             <DropdownMenuGroup>
               <DropdownMenuItem>
-                <UserCircle />
+                <Sparkles />
+                Upgrade to Pro
+              </DropdownMenuItem>
+            </DropdownMenuGroup>
+            <DropdownMenuSeparator />
+            <DropdownMenuGroup>
+              <DropdownMenuItem>
+                <CheckVerified01 />
                 Account
               </DropdownMenuItem>
               <DropdownMenuItem>
@@ -85,14 +91,16 @@ const NavUser = ({user}) => {
                 Billing
               </DropdownMenuItem>
               <DropdownMenuItem>
-                <NotificationBox />
+                <Bell01 />
                 Notifications
               </DropdownMenuItem>
             </DropdownMenuGroup>
             <DropdownMenuSeparator />
             <DropdownMenuItem>
               <LogOut01 />
-              Log out
+              <Link href="/login">
+                Log out
+              </Link>
             </DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>

@@ -182,9 +182,10 @@ const AnnonationSetup = ({
             </div>
           )}
         </div>
-      </section>
-      <div
-        className={`fixed left-16 bottom-0 z-20 w-[calc(100%-64px)]`}
+      </section> 
+      <div className={`fixed right-0 bottom-0 z-20 w-[calc(100%-64px)] min-[1025px]:w-[calc(100%-294px)]`}
+       // className={`absolute right-0 bottom-0 z-10 w-full`}
+
       >
         <Controls
           selectedColor={selectedColor}

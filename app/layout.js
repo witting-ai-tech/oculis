@@ -25,16 +25,12 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <body className={` ${inter.variable} antialiased `}>
         <ProviderWrapper>
-          <SidebarProvider style={{
-              "--sidebar-width": "calc(var(--spacing) * 72)",
-              "--header-height": "calc(var(--spacing) * 12)",
-            }}
-          >
-            <AppSidebar variant="inset"/>
+          <SidebarProvider>
+            <AppSidebar />
             <SidebarInset>
-              <header className="bg-white sticky top-0 flex h-16 shrink-0 items-center gap-2 border-b px-4">
-                <SidebarTrigger className="-ml-1"/>
-                <Separator orientation="vertical" className="mr-2 h-4" />
+              <header className="bg-white sticky top-0 flex items-center pt-6 pb-4 z-50 shrink-0 gap-2 px-6">
+                <SidebarTrigger className="-ml-1 text-[#717680] focus:outline-none focus:ring-none"/>
+                <Separator orientation="vertical" className="mr-2 !h-3 w-[1.33px] !bg-[#A4A7AE]" />
                 <Breadcrumbs />
               </header>
               <NotificationManager />

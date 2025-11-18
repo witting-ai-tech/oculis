@@ -273,7 +273,7 @@ const AllAlertsPage = () => {
             className={`absolute right-0 bottom-0 z-10 w-full`}
           > 
             <div className="control bg-white w-full flex flex-row items-center gap-3 justify-between px-12 py-[18px] mt-8 text-sm">
-              <p className="text-[#535862] font-bold font-[18px]">
+              <p className="text-[#535862] font-bold">
                 {selectedCount} alerts Selected
               </p>
               <div className="flex gap-3">
