@@ -314,7 +314,7 @@ export const cameraFormInputs = [
         name: "cameraId",
         label: "Camera ID",
         placeholder: "e.g. CAM-2X57YA",
-        required: true,
+        required: false,
       },
       {
         type: "text",
@@ -327,7 +327,7 @@ export const cameraFormInputs = [
         type: "select",
         name: "cameraType",
         label: "Camera Type",
-        required: true,
+        required: false,
         options: [
           { value: "ip", label: "IP Camera" },
           { value: "rtsp", label: "RTSP Stream" },
@@ -353,16 +353,14 @@ export const cameraFormInputs = [
         label: "Site",
         required: true,
         options: [
-          { value: "gurgaon", label: "Gurgaon" },
-          { value: "noida", label: "Noida" },
-          { value: "mumbai", label: "Mumbai" },
+          { value: "671c6e80b2f4a95c7baf2156", label: "Gurgaon" },
         ],
       },
       {
         type: "select",
         name: "floor",
         label: "Floor",
-        required: true,
+        required: false,
         options: [
           { value: "floor-1", label: "Floor 1" },
           { value: "floor-2", label: "Floor 2" },
@@ -373,7 +371,7 @@ export const cameraFormInputs = [
         type: "select",
         name: "zone",
         label: "Zone",
-        required: true,
+        required: false,
         options: [
           { value: "packaging", label: "Packaging Zone" },
           { value: "assembly", label: "Assembly" },
@@ -390,7 +388,7 @@ export const cameraFormInputs = [
         type: "select",
         name: "retentionPolicy",
         label: "Retention Policy",
-        required: true,
+        required: false,
         options: [
           { value: "7d", label: "7d" },
           { value: "30d", label: "30d" },
@@ -401,7 +399,7 @@ export const cameraFormInputs = [
         type: "select",
         name: "detectionSensitivity",
         label: "Detection Sensitivity",
-        required: true,
+        required: false,
         options: [
           { value: "low", label: "Low (1 trigger per 10min)" },
           { value: "medium", label: "Medium" },

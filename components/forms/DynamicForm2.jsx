@@ -10,6 +10,7 @@ import {
   SelectContent,
   SelectItem,
 } from "@/components/ui/select";
+import { createCamera } from "@/lib/api/camera";
 
 import { Button } from "@/components/Button";
 
@@ -69,12 +70,49 @@ const DynamicForm2 = ({
     onCancel?.();
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e?.preventDefault?.();
     if (!handleRequiredValidation()) return;
     onFormDataChange?.(values);
     onSubmit?.(values);
     handleFormSubmit?.();
+
+    const payload = {
+      client_id: "671c6d5fb2f4a95c7baf2143",
+      site_id: values.site,
+      edge_device_id: values.edgeDeviceId || "671c6f90b2f4a95c7baf2179",       
+      
+      name: values.cameraName,                   
+      channel: values.channel || 1,              
+      
+      ingest: {
+        protocol: "rtsp",
+        url: values.cameraUrl,                   
+        fps: values.fps || 25,
+        resolution: values.resolution || "1920x1080"
+      },
+
+      ingest_health: {
+        last_heartbeat_at: new Date().toISOString(),
+        last_frame_ts: new Date().toISOString(),
+        fps: values.healthFps || 25,
+        bitrate: values.bitrate || 2048
+      },
+
+      status: "active",
+      is_deleted: false,
+
+      created_by: new Date().toISOString(),
+      updated_by: new Date().toISOString()
+    };
+
+    const res = await createCamera("671c6d5fb2f4a95c7baf2143", payload);
+    if(res.ok) {
+      console.log("Camera created successfully:", res.data);
+    } else {
+      console.error("Error creating camera:", res.error);
+    }
+
   };
 
   const renderField = (field) => {
