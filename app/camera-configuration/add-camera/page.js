@@ -1,6 +1,5 @@
 "use client";
 import React, { useState } from "react";
-import Navbar from "@/components/Navbar";
 import { Button } from "@/components/ui/button";
 import { steps, cameraFormInputs } from "@/data/cameraData";
 import { snakeToTitle } from "@/lib/utils";
@@ -421,8 +420,7 @@ const Page = () => {
 
   return (
     <>
-      <Navbar />
-      <section className="ml-12 xl:ml-16 pl-16 pt-12">
+      <section className="ml-8 xl:pl-8 pl-8 pt-6">
         {/* stepper */}
 
         <div className="w-full flex flex-row items-start justify-center gap-4 mb-8 relative">
@@ -495,10 +493,3 @@ const Page = () => {
 
 export default Page;
 
-// <Button
-//   type="button"
-//   className="rounded-[8px] font-semibold hover:opacity-90 bg-gray-600 hover:bg-gray-700"
-//   onClick={logAllData}
-// >
-//   Log All Data
-// </Button>

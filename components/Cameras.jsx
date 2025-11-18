@@ -69,7 +69,7 @@ const Cameras = ({ columns, cameraData }) => {
   };
 
   return (
-    <section className="mt-8 border rounded-lg">
+    <section className="mt-2 border rounded-lg">
       <div className="flex flex-row justify-between p-8">
         <h1 className="font-semibold text-lg">Camera Table</h1>
         <div className="flex flex-row space-x-4">
