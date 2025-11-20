@@ -32,6 +32,7 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import { CheckCircle, ClockSnooze, Eye, Share01, Users01 } from "@untitledui/icons";
 
 const people = [
   {
@@ -53,8 +54,7 @@ const people = [
 
 const alertColumns = [
   { title: "Alert Type", key: "alertType", width: "30%" },
-  {
-    title: "Severity",
+  {title: "Severity",
     key: "severity",
     render: (item) => {
       const severityColors = {
@@ -119,11 +119,11 @@ const alertColumns = [
             </div>
           </DropdownMenuTrigger>
           <DropdownMenuContent className="w-[200px]">
-            <DropdownMenuItem>View Details</DropdownMenuItem>
-            <DropdownMenuItem>Acknowledge</DropdownMenuItem>
-            <DropdownMenuItem>Escalate to</DropdownMenuItem>
-            <DropdownMenuItem>Snooze</DropdownMenuItem>
-            <DropdownMenuItem>Dismiss</DropdownMenuItem>
+            <DropdownMenuItem><Eye/> View Details</DropdownMenuItem>
+            <DropdownMenuItem><CheckCircle/> Acknowledge</DropdownMenuItem>
+            <DropdownMenuItem><Share01/> Escalate to</DropdownMenuItem>
+            <DropdownMenuItem><ClockSnooze/> Snooze</DropdownMenuItem>
+            <DropdownMenuItem><Users01/>Dismiss</DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
       );
@@ -266,7 +266,6 @@ const AllAlertsPage = () => {
                 setSelectedCount(indexes.length);
               }}
             />
-            {/* <div className="bg-green-300 w-full p-4">hello world</div> */}
           </div>
           
           <div //className={`absolute right-0 bottom-0 z-10 w-[calc(100%-294px)] min-[1025px]:w-[calc(100%-332px)]`}

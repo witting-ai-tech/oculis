@@ -16,6 +16,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { severityIcons } from "@/data/severityIcons";
+import CustomLayout from "@/components/CustomLayout";
 const people = [
   {
     name: "John Lee",
@@ -79,10 +80,9 @@ const AlertTimelinePage = () => {
   }, []);
 
   return (
+    <CustomLayout>
+    
     <section className="h-full flex flex-col overflow-hidden">
-      <h1 className="text-[20px] xl:text-[24px] font-semibold text-[#181d27] mb-6">
-        Alert Timeline
-      </h1>
 
       <section className="flex-1 flex flex-row gap-4 xl:gap-8 overflow-hidden">
         <div className="w-[45%] shrink-0 border-r-2 border-[#E4E4E7] pr-4 xl:pr-8 overflow-y-auto">
@@ -173,6 +173,7 @@ const AlertTimelinePage = () => {
         </div>
       </section>
     </section>
+    </CustomLayout>
   );
 };
 

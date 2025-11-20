@@ -424,7 +424,7 @@ const Page = () => {
         {/* stepper */}
 
         <div className="w-full flex flex-row items-start justify-center gap-4 mb-8 relative">
-          <div className="absolute top-5 left-0 w-full flex justify-center -z-1">
+          <div className="absolute top-5 left-0 w-full flex justify-center ">
             <div className="relative w-[740px] h-[2px] bg-[#E5E7EB]">
               <div
                 className="absolute top-0 left-0 h-[2px] bg-[#414651] transition-all duration-800"
@@ -436,7 +436,7 @@ const Page = () => {
           {steps.map((step) => {
             return (
               <div
-                className="flex flex-col items-center justify-center w-60 text-sm text-center transition-all"
+                className="flex flex-col items-center justify-center w-60 text-sm text-center transition-all z-0"
                 key={step.id}
               >
                 {activeStep > step.id ? (

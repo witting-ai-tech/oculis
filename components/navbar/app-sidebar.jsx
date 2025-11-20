@@ -115,11 +115,11 @@ const AppSidebar = ({...props}) => {
         ],
         [
             { name: "People",
-            href: "/users-and-roles",
+            href: "/people",
             icon: <Users01 size={20}/>,
             submenu:[
-                {id:0, title:"Users", href:"/users-and-roles"},
-                {id:1, title:"Employees", href:"/admin-panel/employees"}
+                {id:0, title:"Users", href:"/people/users-and-roles"},
+                {id:1, title:"Employees", href:"/people/employees"}
             ]},
         ],
         [
@@ -140,7 +140,7 @@ const AppSidebar = ({...props}) => {
             submenu:[
                 { id: 0, title: "Organization Settings", href: "/admin-panel/settings" },
                 { id: 1, title: "Connectors", href: "/admin-panel/connectors" },
-                { id: 2, title: "Employees", href: "/admin-panel/employees" },
+              //  { id: 2, title: "Employees", href: "/admin-panel/employees" },
                 { id: 3, title: "Camera Setup", href: "/camera-configuration/add-camera" },
             ]},
 
