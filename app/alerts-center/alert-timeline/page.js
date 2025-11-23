@@ -16,6 +16,8 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { severityIcons } from "@/data/severityIcons";
+import axios from "axios";
+
 const people = [
   {
     name: "John Lee",
@@ -41,7 +43,13 @@ const AlertTimelinePage = () => {
   const [selectedIncident, setSelectedIncident] = useState(
     data[0].incidents[0]
   );
+  const [apiAlertData, setApiAlertData] =useState([]);
+  
+  useEffect(() => {
+  }, []);
 
+  console.log(apiAlertData);
+  
   useEffect(() => {
     const interval = setInterval(() => {
       setData((prevData) => {
