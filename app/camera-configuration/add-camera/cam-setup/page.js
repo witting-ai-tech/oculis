@@ -1,8 +1,6 @@
 "use client";
 import { useState, useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
 import { useRouter } from "next/navigation";
-import Navbar from "@/components/Navbar";
 import { Button } from "@/components/Button";
 import Link from "next/link";
 
@@ -55,7 +53,7 @@ const Page = () => {
 
   return (
     <div className="h-screen flex flex-col bg-white overflow-y-auto">
-      <Navbar />
+      {/* <Navbar /> */}
       <div className="pt-16 pb-6">
         <h1 className="text-[24px] font-semibold text-center mb-3">
           Testing Camera Connection

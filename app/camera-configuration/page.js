@@ -93,63 +93,63 @@ const CamColumns = [
   { title: "Last Sync", key: "lastSync" },
 ];
 
-const detectColumns = [
-  {
-    title: "Camera Name",
-    key: "cameraName",
-    width: "30%",
-    render: (camera) => (
-      <div className="flex flex-col gap-2 items-start justify-center min-w-[125px]">
-        <p className="text-black">{camera.cameraName}</p>
-        <p className="text-gray-500">@{camera.username}</p>
-      </div>
-    ),
-  },
-  {
-    title: "Zone Label",
-    key: "zoneLabel",
-  },
-  {
-    title: "Zone Type",
-    key: "zoneType",
-  },
-  {
-    title: "Model Type",
-    key: "modelType",
-  },
-  {
-    title: "Created by",
-    key: "createdBy",
-  },
-  {
-    title: "Last Updated",
-    key: "lastUpdated",
-  },
-  {
-    title: "View",
-    key: "view",
-    render: (camera) => (
-      <Image
-        src={camera.viewImage}
-        alt="View"
-        className="w-16 h-16 object-cover rounded"
-      />
-    ),
-  },
-];
+// const detectColumns = [
+//   {
+//     title: "Camera Name",
+//     key: "cameraName",
+//     width: "30%",
+//     render: (camera) => (
+//       <div className="flex flex-col gap-2 items-start justify-center min-w-[125px]">
+//         <p className="text-black">{camera.cameraName}</p>
+//         <p className="text-gray-500">@{camera.username}</p>
+//       </div>
+//     ),
+//   },
+//   {
+//     title: "Zone Label",
+//     key: "zoneLabel",
+//   },
+//   {
+//     title: "Zone Type",
+//     key: "zoneType",
+//   },
+//   {
+//     title: "Model Type",
+//     key: "modelType",
+//   },
+//   {
+//     title: "Created by",
+//     key: "createdBy",
+//   },
+//   {
+//     title: "Last Updated",
+//     key: "lastUpdated",
+//   },
+//   {
+//     title: "View",
+//     key: "view",
+//     render: (camera) => (
+//       <Image
+//         src={camera.viewImage}
+//         alt="View"
+//         className="w-16 h-16 object-cover rounded"
+//       />
+//     ),
+//   },
+// ];
 
-const menu = [
-  {
-    title: "Cameras",
-    component: <Cameras columns={CamColumns} cameraData={cameraData} />,
-  },
-  {
-    title: "Detected Zones",
-    component: (
-      <DetectedZones columns={detectColumns} detectData={detectData} />
-    ),
-  },
-];
+// const menu = [
+//   {
+//     title: "Cameras",
+//     component: <Cameras columns={CamColumns} cameraData={cameraData} />,
+//   },
+//   {
+//     title: "Detected Zones",
+//     component: (
+//       <DetectedZones columns={detectColumns} detectData={detectData} />
+//     ),
+//   },
+// ];
 
 const Page = () => {
   const [currentCam, setCurrentCam] = useState(0);
@@ -180,15 +180,17 @@ const Page = () => {
 
   return (
     <CustomLayout>
-      <div className="ml-12 xl:ml-16 pl-16 pr-8 pb-16">
-        <div className="w-[50%] xl:w-[40%]">
+      <div className="xl:pl-8 pl-8 pr-8 pb-16">
+        {/* <div className="w-[50%] xl:w-[40%]">
           <Hnavbar
             menu={menu}
             currentTab={currentCam}
             setCurrentTab={setCurrentCam}
           />
-        </div>
-        <div className="mt-8">{menu[currentCam]?.component}</div>
+        </div> */}
+        {/* <div className="mt-8">{menu[currentCam]?.component}</div> */}
+
+        <Cameras columns={CamColumns} cameraData={cameraData} />
       </div>
     </CustomLayout>
   );
