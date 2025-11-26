@@ -59,17 +59,17 @@ const AppSidebar = ({...props}) => {
             },
         ],
         [
-            { name: "Insights",
-            href: "/insights",
-            icon: (
-                <BarChartSquare01 size={20}/>
-            ),
-            submenu: [
-                { id: 0, title: "Safety & Compliance", href: "/insights/safety-and-compliance" },
-                { id: 1, title: "Quality & Defects", href: "/insights/quality-and-defects" },
-                { id: 2, title: "Workforce Monitoring", href: "/insights/workforce-management" },
-                { id: 3, title: "Machine Health", href: "/insights/machine-health" },
-            ]},
+            // { name: "Insights",
+            // href: "/insights",
+            // icon: (
+            //     <BarChartSquare01 size={20}/>
+            // ),
+            // submenu: [
+            //     { id: 0, title: "Safety & Compliance", href: "/insights/safety-and-compliance" },
+            //     { id: 1, title: "Quality & Defects", href: "/insights/quality-and-defects" },
+            //     { id: 2, title: "Workforce Monitoring", href: "/insights/workforce-management" },
+            //     { id: 3, title: "Machine Health", href: "/insights/machine-health" },
+            // ]},
 
             { name: "Alerts & Incidents",
             href: "/alerts-center/all-alerts",
@@ -98,15 +98,15 @@ const AppSidebar = ({...props}) => {
             { id: 1, title: "Heatmap View", href:"/monitoring" },
             ]},
 
-            { name: "Reports",
-            href: "/reports",
-            icon: (
-                <File05 size={20}/>
-            ),
-            submenu: [
-            { id: 0, title: "Incident Report", href:"/reports/incident-report" },
-            { id: 1, title: "Audit Report", href:"/reports/audit-report" },
-            ]},
+            // { name: "Reports",
+            // href: "/reports",
+            // icon: (
+            //     <File05 size={20}/>
+            // ),
+            // submenu: [
+            // { id: 0, title: "Incident Report", href:"/reports/incident-report" },
+            // { id: 1, title: "Audit Report", href:"/reports/audit-report" },
+            // ]},
 
             { name: "Camera Config",
             href: "/camera-configuration",
@@ -123,16 +123,16 @@ const AppSidebar = ({...props}) => {
             ]},
         ],
         [
-            { name:"System Management",
-            href:"/system-management",
-            icon:(
-                <Server01 size={20}/>
-            ),
-            submenu:[
-                { id: 0, title: "Cameras", href: "/system-management/cameras" },
-                { id: 1, title: "Edge Devices", href: "/system-management/edge-devices" },
-                { id: 2, title: "AI Models", href: "/system-management/ai-models" },
-            ]},
+            // { name:"System Management",
+            // href:"/system-management",
+            // icon:(
+            //     <Server01 size={20}/>
+            // ),
+            // submenu:[
+            //     { id: 0, title: "Cameras", href: "/system-management/cameras" },
+            //     { id: 1, title: "Edge Devices", href: "/system-management/edge-devices" },
+            //     { id: 2, title: "AI Models", href: "/system-management/ai-models" },
+            // ]},
 
             { name:"Admin Panel",
             href:"/admin-panel",
@@ -144,10 +144,10 @@ const AppSidebar = ({...props}) => {
                 { id: 3, title: "Camera Setup", href: "/camera-configuration/add-camera" },
             ]},
 
-            { name:"Support",
-            href:"/support",
-            icon: <HelpCircle size={20}/>
-            }       
+            // { name:"Support",
+            // href:"/support",
+            // icon: <HelpCircle size={20}/>
+            // }       
         ],
         ]
     }

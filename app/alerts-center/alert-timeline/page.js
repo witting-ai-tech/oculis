@@ -17,6 +17,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { severityIcons } from "@/data/severityIcons";
 import axios from "axios";
+import CustomLayout from "@/components/CustomLayout";
 
 const people = [
   {
