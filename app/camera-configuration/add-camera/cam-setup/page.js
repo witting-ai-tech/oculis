@@ -4,32 +4,31 @@ import { useRouter } from "next/navigation";
 import { Button } from "@/components/Button";
 import Link from "next/link";
 
+const steps = [
+  {
+    title: "Network Reachability",
+    description: "Checking if the camera is reachable on the network",
+  },
+  {
+    title: "Camera Authentication",
+    description: "Validating login credentials and permissions",
+  },
+  {
+    title: "Video Feed Availability",
+    description: "Fetching live video stream",
+  },
+  {
+    title: "Latency & Quality Check",
+    description: "Measuring connection speed and latency",
+  },
+  {
+    title: "AI Processing Readiness",
+    description: "Testing compatibility with AI detection models",
+  },
+];
+
 const Page = () => {
   const router = useRouter();
-
-  const steps = [
-    {
-      title: "Network Reachability",
-      description: "Checking if the camera is reachable on the network",
-    },
-    {
-      title: "Camera Authentication",
-      description: "Validating login credentials and permissions",
-    },
-    {
-      title: "Video Feed Availability",
-      description: "Fetching live video stream",
-    },
-    {
-      title: "Latency & Quality Check",
-      description: "Measuring connection speed and latency",
-    },
-    {
-      title: "AI Processing Readiness",
-      description: "Testing compatibility with AI detection models",
-    },
-  ];
-
   const [activeStep, setActiveStep] = useState(0);
 
   useEffect(() => {
