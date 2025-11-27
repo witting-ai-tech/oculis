@@ -21,7 +21,7 @@ import {
 } from "@/components/ui/select";
 import { SidebarTrigger } from "@/components/ui/sidebar";
 
-export const userColumns = [
+const userColumns = [
   {
     title: "Name",
     key: "name",
@@ -46,7 +46,7 @@ export const userColumns = [
   { title: "Last Login", key: "lastLogin" },
 ];
 
-export const employeeData = [
+const employeeData = [
   {
     id: "23410",
     name: "Olivia Rhye",
