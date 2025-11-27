@@ -180,7 +180,7 @@ const Page = () => {
           />
         </div> */}
         {/* <div className="mt-8">{menu[currentRole]?.component}</div> */}
-        <section className="mt-8 border rounded-lg">
+        <section className="border rounded-lg">
           {showAddUser && (
             <AddUser onClose={()=> setshowAddUser(false)} 
               editItem={editItem}
