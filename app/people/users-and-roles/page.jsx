@@ -180,7 +180,7 @@ const Page = () => {
           />
         </div> */}
         {/* <div className="mt-8">{menu[currentRole]?.component}</div> */}
-        <section className="mt-8 border rounded-lg">
+        <section className="border rounded-lg">
           {showAddUser && (
             <AddUser onClose={()=> setshowAddUser(false)} 
               editItem={editItem}
@@ -193,8 +193,8 @@ const Page = () => {
             handleFormSubmit={confirmedDeleteUser}/>
           )}
 
-          <div className="flex-row p-8">
-            <h1 className="font-semibold text-lg">User Table</h1>
+          <div className="flex-row">
+            <h1 className="text-[#181D27] font-inter text-lg font-semibold leading-7 py-5 px-6">User Table</h1>
             <Table 
               columns={userColumns}
               data={paginatedData}
