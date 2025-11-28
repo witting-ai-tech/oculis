@@ -15,13 +15,14 @@ import {
   ChevronDown,
   ChevronUp,
   EllipsisVertical,
+  XIcon,
 } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/Button";
 import Drop from "@/components/Drop";
 import { Table } from "@/components/Table";
 import SelectComp from "@/components/SelectComp";
-import { cn } from "@/lib/utils";
+import { cn, snakeToTitle, formatDate } from "@/lib/utils";
 import Image from "next/image";
 import {
   DropdownMenu,
@@ -31,8 +32,13 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { escalateAlert, getAlertsData, updateAlert } from "@/lib/api/alert-timeline";
+import { escalateAlert, getAlertByID, getAlertsData, updateAlert } from "@/lib/api/alert-timeline";
+//import type { DetailedAlert } from "@/lib/api/alert-timeline";
 import { CheckCircle, ClockSnooze, Eye, Share01, Users01, Users02 } from "@untitledui/icons";
+import Incident from "@/components/Incident";
+import AlertIncident from "@/components/AlertIncident";
+import { severityIcons } from "@/data/severityIcons";
+
 
 const people = [
   {
@@ -55,23 +61,6 @@ const people = [
 ];
 
 
-
-function formatDate(dateString) {
-  const date = new Date(dateString);
-  return new Intl.DateTimeFormat("en-GB", {
-    day: "2-digit",
-    month: "2-digit",
-    year: "numeric",
-    hour: "2-digit",
-    minute: "2-digit",
-    hour12: true,
-  }).format(date);
-}
-
-const formatLabel = s =>
-  s.replace(/_/g, " ").replace(/\b\w/g, c => c.toUpperCase());
-
-
 const AllAlertsPage = () => {
   // master alerts with ids for stable updates
   // const [alerts, setAlerts] = useState(() =>
@@ -80,9 +69,8 @@ const AllAlertsPage = () => {
   const alertColumns = [
   { title: "Alert Type", key: "alertType", width: "25%",
     render: (item)=>{
-      const alertType = formatLabel(item.alertType) 
       return(
-        <span>{alertType}</span>
+        <span>{snakeToTitle(item.alertType)}</span>
       )
     }
    },
@@ -95,34 +83,38 @@ const AllAlertsPage = () => {
         medium: "text-[#F79009] ",
         low: "text-green-600 ",
       };
-      const severity = formatLabel(item.severity) 
-
+    
       return (
         <span className={`${severityColors[item.severity] ||""}`}>
-          {severity}
+          {snakeToTitle(item.severity)}
         </span>
       );
     },
   },
-  { title: "Worker", key: "worker",},
+  { title: "Worker", key: "worker", width:"15%",
+    render:(item)=>{
+      const worker = item.worker;
+      return (worker?.name || "Unknown")
+    }
+  },
   { title: "Time Detected", key: "timeDetected",
   },
   { title: "Status",
     key: "status",
-    render: (camera) => {
+    render: (item) => {
       let textColor = "";
       let bgColor = "";
       let borderColor = "";
 
-      if (camera.status === "acknowledged") {
+      if (item.status === "acknowledged") {
         textColor = "text-[#067647]";
         bgColor = "bg-[#ECFDF3]";
         borderColor = "border-[#aaefc6]";
-      } else if (camera.status === "pending" ||camera.status === "in_progress") {
+      } else if (item.status === "pending" ||item.status === "in_progress") {
         textColor = "text-[#b54708]";
         bgColor = "bg-[#FFFAEB]";
         borderColor = "border-[#fee396]";
-      } else if (camera.status === "dismissed") {
+      } else if (item.status === "dismissed") {
         textColor = "text-[#414651]";
         bgColor = "bg-[#fafafa]";
         borderColor = "border-gray-500";
@@ -131,12 +123,11 @@ const AllAlertsPage = () => {
         bgColor = "bg-[#FEF3F2]";
         borderColor = "border-[#fca5a1]";
       }
-      const cameraStatus = formatLabel(camera.status);
       return (
         <p
           className={`h-[22px] text-xs w-fit ${bgColor} ${borderColor} ${textColor} font-medium rounded-full border-1 text-center px-[8px] py-[2px] flex items-center justify-center`}
         >
-          {cameraStatus}
+          {snakeToTitle(item.status)}
         </p>
       );
     },
@@ -145,25 +136,39 @@ const AllAlertsPage = () => {
   { title: "Actions",
     key: "action",
     render: (item) => {
-      const alertId = item.id;
-      const clientId = "671c6d5fb2f4a95c7baf2143";
-
+     
       return (
+        <div className="flex justify-center">
         <DropdownMenu>
-          <DropdownMenuTrigger>
+          <DropdownMenuTrigger >
             <div className="rounded-md border-2 hover:border-[#9e77ed] w-fit p-1">
               <EllipsisVertical size={20} />
             </div>
           </DropdownMenuTrigger>
-          <DropdownMenuContent className="w-[200px]">
-            <DropdownMenuItem><Eye/> View Details</DropdownMenuItem>
+          <DropdownMenuContent 
+            onClick={(e) => e.stopPropagation()} className="w-[200px]">
+            <DropdownMenuItem onClick={()=>{ 
+              handleSelectCurrentItem(item)
+            }}><Eye/> View Details</DropdownMenuItem>
             
-            <DropdownMenuItem
-            onClick={async () => {
+            <DropdownMenuItem 
+            onClick={async (e) => {
+              e.stopPropagation();
               try{
-                await updateAlert(clientId, alertId, "acknowledged");
+                 await updateAlert(item.clientId,  
+                      item.alertId,
+                      {
+                        title: "No Helmet Violation - Verified",
+                        severity: "critical",
+                        status: "acknowledged",
+                        metadata: {
+                          reviewed_by: "Supervisor",
+                          note: "On-site inspection requested"
+                        }
+                      }
+                      )
                 setAlerts(prev => prev.map(a=>
-                  a.id === alertId? {...a, status:"acknowledged"} :a
+                  a.alertId === item.alertId? {...a, status:"acknowledged"} :a
                 ));
               }catch(err){
                 console.error("Acknowlegde Failed: ", err)
@@ -178,11 +183,23 @@ const AllAlertsPage = () => {
             <DropdownMenuItem><ClockSnooze/> Snooze</DropdownMenuItem>
             
             <DropdownMenuItem
-             onClick={async ()=>{
+            onClick={async (e) => {
+              e.stopPropagation();
                try{
-                await updateAlert(clientId, alertId, "dismissed");
+                await  await updateAlert(item.clientId,  
+                      item.alertId,
+                      {
+                        title: "No Helmet Violation - Verified",
+                        severity: "critical",
+                        status: "dismissed",
+                        metadata: {
+                          reviewed_by: "Supervisor",
+                          note: "On-site inspection requested"
+                        }
+                      }
+                      )
                 setAlerts(prev => prev.map(a=>
-                  a.id === alertId? {...a, status:"dismissed"} :a
+                  a.alertId === item.alertId? {...a, status:"dismissed"} :a
                 ));
               }catch(err){
                 console.error("Dismissed Failed: ", err)
@@ -191,6 +208,8 @@ const AllAlertsPage = () => {
             ><Users01/> Dismiss</DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
+        </div>
+       
       );
     },
   },
@@ -205,21 +224,28 @@ const AllAlertsPage = () => {
 
   const [filteredAlertsData, setFilteredAlertsData] = useState(alerts);
   const [selectedIndexes, setSelectedIndexes] = useState([]);
+  const [currentItem, setCurrentItem] = useState(null);
+  const [overlay, setOverlay] =useState(false);
+
   const [selectedCount, setSelectedCount] = useState(0);
   const [open, setOpen] = useState(false);
   //const [escalateTarget, setEscalateTarget] = useState(null);
   const [escalateLoading, setEscalateLoading] = useState(false);
+  
+  
   useEffect(()=>{
     getAlertsData().then(
       data=>setAlerts(
         data.map(item =>({
-        id:item._id,
+        clientId: item.client_id,
+        alertId: item._id,
         alertType: item.alert_type,
         severity: item.severity,
-        worker:item.worker?.name??"Unknown",
+        worker:item.worker,
         timeDetected: formatDate(item.detected_at),
         status: item.status,
-        assignedTo: "Unassigned",
+        assignedTo: (item.escalation_history?.[0]?.recipients?.[0]?.name || "Unassigned"), 
+        escalation_history:item.escalation_history
       })))
     ).catch(console.error);
   },[]);
@@ -228,16 +254,16 @@ const AllAlertsPage = () => {
     let filtered = alerts;
 
     if (selectedStatus && selectedStatus !== "All") {
-      filtered = filtered.filter((alert) => alert.status === selectedStatus);
+      filtered = filtered.filter((alert) => alert.status === selectedStatus.toLowerCase());
     }
     if (selectedAssignedTo && selectedAssignedTo !== "Anyone") {
       filtered = filtered.filter(
-        (alert) => alert.assignedTo === selectedAssignedTo
+        (alert) => snakeToTitle(alert.assignedTo) === selectedAssignedTo
       );
     }
     if (selectedSeverity && selectedSeverity !== "All") {
       filtered = filtered.filter(
-        (alert) => alert.severity === selectedSeverity
+        (alert) => snakeToTitle(alert.severity) === selectedSeverity
       );
     }
     // selectedTimeFilter placeholder for future when timestamps exist
@@ -286,6 +312,67 @@ const AllAlertsPage = () => {
 //   }
 // };
   
+  const handleSelectCurrentItem = async (currentItem) =>{
+    try{
+      console.log("Fetching full details for:", currentItem.alertId);
+      const raw = await getAlertByID(currentItem.clientId, currentItem.alertId)
+      const detailedAlert={
+      id: raw._id,
+      clientId: raw.client_id,
+      siteId: raw.site_id,
+      factoryId: raw.factory_id,
+      cameraId: raw.camera_id,
+      alertType: raw.alert_type,
+      title: raw.title,
+      severity: raw.severity,
+      status: raw.status,
+      detectedAt: raw.detected_at,
+      worker: {
+        id: raw.worker?.id,
+        name: raw.worker?.name,
+        shift: raw.worker?.shift,
+        badgeId: raw.worker?.badge_id,
+      },
+      location: {
+        area: raw.location?.area,
+        floor: raw.location?.floor,
+        cameraLabel: raw.location?.camera_label,
+      },
+      media: {
+        imageUrl: raw.media?.image_url,
+        clipUrl: raw.media?.clip_url,
+      },
+      bbox: {
+        x: raw.bbox?.x,
+        y: raw.bbox?.y,
+        w: raw.bbox?.w,
+        h: raw.bbox?.h,
+      },
+      metadata: {
+        reviewedBy: raw.metadata?.reviewed_by,
+        note: raw.metadata?.note,
+      },
+      escalationHistory: (raw.escalation_history || []).map((e) => ({
+        timestamp: e.timestamp,
+        recipients: (e.recipients || []).map((r) => ({
+          id: r.id,
+          name: r.name,
+          role: r.role,
+        })),
+        note: e.note,
+        by: {
+          id: e.by?.id,
+          name: e.by?.name,
+        },
+      })),
+    };
+
+      setCurrentItem(detailedAlert);
+      setOverlay(true);
+    }catch(err){  
+      console.error("Failed to fetch alert details:", err);
+    }
+  }
 return (
     <>
       <h1 className="text-[20px] xl:text-[24px] font-semibold text-[#181d27] mb-6">
@@ -374,13 +461,31 @@ return (
               columns={alertColumns}
               data={filteredAlertsData}
               selectable
+              //setCurrentItem={handleSelectCurrentItem}
+              onRowClick={handleSelectCurrentItem}
+              setOverlay={setOverlay}
               onSelectionChange={(indexes) => {
                 setSelectedIndexes(indexes);
                 setSelectedCount(indexes.length);
               }}
             />
-           
           </div>
+          {overlay && (
+          <div className="inset-0 z-25 fixed top-17 right-0 w-full h-full bg-[#54565a]/80 flex items-center justify-end">
+            <div className="bg-white h-full w-[50%] flex flex-row justify-between items-start p-2 xl:p-4 text-sm">
+              {/* {console.log("OVERLAY currentIem", currentItem)} */}
+              <AlertIncident
+                selectedIncident={currentItem}
+                severityIcons={severityIcons}
+              />
+              <XIcon
+                className="p-2 cursor-pointer text-[#54565a]"
+                size={40}
+                onClick={() => setOverlay(false)}
+              />
+            </div>
+          </div>
+        )}
           
           <div //className={`absolute right-0 bottom-0 z-10 w-[calc(100%-294px)] min-[1025px]:w-[calc(100%-332px)]`}
             className={`absolute right-0 bottom-0 z-10 w-full`}
@@ -390,44 +495,31 @@ return (
                 {selectedCount} alerts Selected
               </p>
               <div className="flex gap-3">
-                {/* <Button
-                  onClick={() => {
-                    if (selectedIndexes.length === 0) return;
-                    const selectedIds = selectedIndexes.map(
-                      (i) => filteredAlertsData[i].id
-                    );
-                    setAlerts((prev) =>
-                      prev.map((a) =>
-                        selectedIds.includes(a.id)
-                          ? {
-                              ...a,
-                              status:
-                                a.status === "Pending"
-                                  ? "Acknowledged"
-                                  : a.status,
-                            }
-                          : a
-                      )
-                    );
-                  }}
-                >
-                  Acknowledge
-                </Button> */}
                 <Button
                 onClick={async ()=>{
                   if(selectedIndexes.length==0) return;
                   const selectedIds = selectedIndexes.map(
-                    (i) => filteredAlertsData[i].id
+                    (i) => filteredAlertsData[i].alertId
                   );
+                  console.log("selctedIDX", selectedIds);
                   try{
                     await Promise.all(
                       selectedIds.map((alertId)=>
                       updateAlert("671c6d5fb2f4a95c7baf2143",  //client id
                       alertId,
-                      "acknowledged" )
+                      {
+                        title: "No Helmet Violation - Verified",
+                        severity: "critical",
+                        status: "acknowledged",
+                        metadata: {
+                          reviewed_by: "Supervisor",
+                          note: "On-site inspection requested"
+                        }
+                      }
+                      )
                     ));
                     setAlerts((prev)=>
-                    prev.map((a)=> selectedIds.includes(a.id)
+                    prev.map((a)=> selectedIds.includes(a.alertId)
                       ?{...a, status:"acknowledged"}
                       :a
                     )
@@ -460,12 +552,11 @@ return (
                         key={idx}
                         className="flex items-center gap-3 px-4 py-3 focus:bg-gray-100 cursor-pointer"
                         onClick={async ()=>{
-                          const selectedIds = selectedIndexes.map(i=> filteredAlertsData[i].id);
+                          const selectedIds = selectedIndexes.map(i=> filteredAlertsData[i].alertId);
                           try{
                             await Promise.all(
                               selectedIds.map(alertId=>
-                                escalateAlert( "671c6d5fb2f4a95c7baf2143",  // client_id
-                                alertId,
+                                escalateAlert( "671c6d5fb2f4a95c7baf2143", alertId,
                                 {
                                   recipients: [
                                     {
@@ -474,7 +565,7 @@ return (
                                       role: person.role?.toLowerCase().replace(" ", "_")
                                     }
                                   ],
-                                  note: "Escalated via dashboard",
+                                  note: "Escalated via Alert Center",
                                   by: {
                                     id: "dashboard-user",
                                     name: "Admin User"
@@ -485,7 +576,7 @@ return (
                             );
                             setAlerts(prev =>
                               prev.map(a =>
-                                selectedIds.includes(a.id)
+                                selectedIds.includes(a.alertId)
                                   ? { ...a, assignedTo: person.name, status: "escalated" }
                                   : a
                               )

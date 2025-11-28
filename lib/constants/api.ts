@@ -21,17 +21,16 @@ export const ENDPOINTS = {
   LIST_ALERTS: (client_id: string): string=>
     `${API_BASE}/api/v1/clients/${client_id}/alerts/`,
 
-  UPDATE_ALERT:(client_id:string, alert_id:string, status:string): string =>
-    `${API_BASE}/api/v1/clients/${client_id}/alerts/${alert_id}?status=${status}`,
+  // UPDATE_ALERT:(client_id:string, alert_id:string, status:string): string =>
+  //   `${API_BASE}/api/v1/clients/${client_id}/alerts/${alert_id}?status=${status}`,
+
+  UPDATE_ALERT:(client_id:string, alert_id:string): string =>
+    `${API_BASE}/api/v1/clients/${client_id}/alerts/${alert_id}`,
 
   ESCALATE_ALERT:(client_id:string, alert_id:string):string=>
-    `${API_BASE}/api/v1/clients/${client_id}/alerts/${alert_id}/escalate`
-};
+    `${API_BASE}/api/v1/clients/${client_id}/alerts/${alert_id}/escalate`,
 
-export const api = axios.create({
-  baseURL: API_BASE,
-  headers:{
-    "Content-Type": "application/json",
-  }
-})
+  GET_ALERT_BYID:(client_id:string, alert_id:string):string =>
+    `${API_BASE}/api/v1/clients/${client_id}/alerts/${alert_id}`,
+};
 
