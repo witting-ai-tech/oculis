@@ -3,7 +3,7 @@ import Header from "./Header";
 
 const CustomLayout = ({ children }) => {
   return (
-    <div className="custom-layout">
+    <div className="custom-layout px-8">
       <Header />
       {/* <Navbar /> */}
       {children}

@@ -70,8 +70,8 @@ const Cameras = ({ columns, cameraData }) => {
 
   return (
     <section className="mt-2 border rounded-lg">
-      <div className="flex flex-row justify-between p-8">
-        <h1 className="font-semibold text-lg">Camera Table</h1>
+      <div className="flex flex-row justify-between p-4">
+        <h1 className="font-semibold text-[20px] p-1">Camera Table</h1>
         <div className="flex flex-row space-x-4">
           <Button
             variant="outline"

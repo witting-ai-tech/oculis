@@ -180,7 +180,7 @@ const Page = () => {
 
   return (
     <CustomLayout>
-      <div className="xl:pl-8 pl-8 pr-8 pb-16">
+      <div className="pb-16">
         {/* <div className="w-[50%] xl:w-[40%]">
           <Hnavbar
             menu={menu}
