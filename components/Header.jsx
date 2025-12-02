@@ -94,7 +94,7 @@ const Header = () => {
     visibility(path);
   }, [path]);
   return (
-    <div className="flex flex-row justify-between p-8 pl-8">
+    <div className="flex flex-row justify-between py-4">
       <h1 className="text-[20px] xl:text-[24px] font-semibold text-[#181d27]">
         {getTitle(path)}
       </h1>
