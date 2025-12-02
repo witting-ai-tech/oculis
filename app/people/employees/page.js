@@ -192,28 +192,27 @@ const EmployeesPage = () => {
       {overlay ? (
         <div className="">
           <div className="flex flex-row items-center justify-between mb-6">
-            
             <div className="flex">
-            <button
-              onClick={() => setOverlay(false)}
-              className="shadow-skew rounded-full w-10 h-10 flex items-center justify-center bg-white hover:bg-gray-100 transition"
-            >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="20"
-                height="20"
-                viewBox="0 0 20 20"
-                fill="none"
+              <button
+                onClick={() => setOverlay(false)}
+                className="shadow-skew rounded-full w-10 h-10 flex items-center justify-center bg-white hover:bg-gray-100 transition"
               >
-                <path
-                  d="M16.6663 10H3.33301M3.33301 10L8.33301 15M3.33301 10L8.33301 5"
-                  stroke="#535862"
-                  strokeWidth="1.66667"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
-              </svg>
-            </button>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="20"
+                  height="20"
+                  viewBox="0 0 20 20"
+                  fill="none"
+                >
+                  <path
+                    d="M16.6663 10H3.33301M3.33301 10L8.33301 15M3.33301 10L8.33301 5"
+                    stroke="#535862"
+                    strokeWidth="1.66667"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
+                </svg>
+              </button>
             </div>
 
             <div className="flex flex-row gap-2">
@@ -253,16 +252,14 @@ const EmployeesPage = () => {
           </div>
         </div>
       ) : (
-        <div>
-
-          <h1 className="text-[20px] xl:text-[24px] font-semibold text-[#181d27] mb-6">
+        <div className="p-8">
+          <h1 className="text-[20px] xl:text-[24px] font-semibold text-[#181d27] pb-2">
             Employees
           </h1>
-
           <section>
-            <div className="w-full mt-8 flex flex-row gap-[200px]">
-              <div className="w-full flex flex-row gap-5">
-                <div className="relative w-full max-w-[500px] text-[#717680]">
+            <div className="w-full flex flex-row gap-[200px]">
+              <div className="w-full flex flex-row gap-5 justify-between">
+                <div className="relative w-[300px] max-w-[500px] text-[#717680] transition-all duration-300 focus-within:w-[400px]">
                   <Search
                     size={20}
                     className="absolute left-3 top-1/2 -translate-y-1/2 pointer-events-none"
@@ -275,46 +272,48 @@ const EmployeesPage = () => {
                   />
                 </div>
 
-                <Select onValueChange={(value) => setStatusFilter(value)}>
-                  <SelectTrigger className="w-[180px] text-[#414651] font-semibold">
-                    <SelectValue placeholder="Status" />
-                  </SelectTrigger>
-                  <SelectContent>
-                    <SelectItem value="all">All</SelectItem>
-                    <SelectItem value="active">Active</SelectItem>
-                    <SelectItem value="inactive">Inactive</SelectItem>
-                  </SelectContent>
-                </Select>
+                <div className="flex gap-4">
+                  <Select onValueChange={(value) => setStatusFilter(value)}>
+                    <SelectTrigger className="w-[180px] text-[#414651] font-semibold">
+                      <SelectValue placeholder="Status" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="all">All</SelectItem>
+                      <SelectItem value="active">Active</SelectItem>
+                      <SelectItem value="inactive">Inactive</SelectItem>
+                    </SelectContent>
+                  </Select>
 
-                <Select onValueChange={(value) => setDepartmentFilter(value)}>
-                  <SelectTrigger className="w-[180px] text-[#414651] font-semibold">
-                    <SelectValue placeholder="Department" />
-                  </SelectTrigger>
-                  <SelectContent>
-                    <SelectItem value="all">All</SelectItem>
-                    <SelectItem value="assembly line a">
-                      Assembly Line A
-                    </SelectItem>
-                    <SelectItem value="packaging area 1">
-                      Packaging Area 1
-                    </SelectItem>
-                    <SelectItem value="warehouse zone 3">
-                      Warehouse Zone 3
-                    </SelectItem>
-                    <SelectItem value="packaging area 4">
-                      Packaging Area 4
-                    </SelectItem>
-                    <SelectItem value="assembly line b">
-                      Assembly Line B
-                    </SelectItem>
-                    <SelectItem value="warehouse zone 1">
-                      Warehouse Zone 1
-                    </SelectItem>
-                  </SelectContent>
-                </Select>
+                  <Select onValueChange={(value) => setDepartmentFilter(value)}>
+                    <SelectTrigger className="w-[180px] text-[#414651] font-semibold">
+                      <SelectValue placeholder="Department" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="all">All</SelectItem>
+                      <SelectItem value="assembly line a">
+                        Assembly Line A
+                      </SelectItem>
+                      <SelectItem value="packaging area 1">
+                        Packaging Area 1
+                      </SelectItem>
+                      <SelectItem value="warehouse zone 3">
+                        Warehouse Zone 3
+                      </SelectItem>
+                      <SelectItem value="packaging area 4">
+                        Packaging Area 4
+                      </SelectItem>
+                      <SelectItem value="assembly line b">
+                        Assembly Line B
+                      </SelectItem>
+                      <SelectItem value="warehouse zone 1">
+                        Warehouse Zone 1
+                      </SelectItem>
+                    </SelectContent>
+                  </Select>
+                </div>
               </div>
             </div>
-            <div className="mt-8 border rounded-lg">
+            <div className="mt-4 border rounded-lg">
               <Table
                 columns={userColumns}
                 data={paginatedData}
