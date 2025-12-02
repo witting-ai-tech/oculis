@@ -1,5 +1,5 @@
 const extraFilters = [
-  { id: 1, title: "All Time" },
+  { id: 1, title: "All" },
   { id: 2, title: "Gurgaon" },
   { id: 3, title: "Delhi" },
   { id: 4, title: "Noida" },
@@ -15,7 +15,7 @@ const statusOptions = [
 ];
 
 const assignedToOptions = [
-  { id: 1, title: "Anyone" },
+  { id: 1, title: "All" },
   { id: 2, title: "Unassigned" },
   { id: 3, title: "John Lee" },
   { id: 4, title: "Jane Doe" },
@@ -30,7 +30,7 @@ const severityOptions = [
 ];
 
 const timeFilterOptions = [
-  { id: 1, title: "All Time" },
+  { id: 1, title: "All" },
   { id: 2, title: "7d" },
   { id: 3, title: "30d" },
   { id: 4, title: "90d" },
@@ -200,6 +200,25 @@ const severityColors = {
     border: "border-gray-500",
   },
 };
+const people = [
+  {
+    id:1,
+    name: "John Lee",
+    role: "Supervisor",
+    avatar: "https://randomuser.me/api/portraits/men/32.jpg",
+  },
+  {
+    id:2,
+    name: "Olivia Rhye",
+    role: "Admin",
+    avatar: "https://randomuser.me/api/portraits/women/45.jpg",
+  },
+  { id:3,
+    name: "Jane Doe",
+    role: "Manager",
+    avatar: "https://randomuser.me/api/portraits/men/64.jpg",
+  },
+];
 export {
   severityColors,
   columnTitles,
@@ -210,4 +229,5 @@ export {
   statusOptions,
   extraFilters,
   alertsTableData,
+  people,
 };
