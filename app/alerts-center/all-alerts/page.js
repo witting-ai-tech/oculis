@@ -9,8 +9,8 @@ import {
   extraFilters,
 } from "@/components/alerts/escalated.js";
 
+import Search from "@components/Search";
 import {
-  Search,
   ListFilter,
   ChevronDown,
   ChevronUp,
@@ -435,14 +435,11 @@ return (
               />
             </div>
             <div className="flex flex-row  gap-3">
-              <div className="relative w-full max-w-[300px] text-[#717680]">
-                <Search
-                  size={20}
-                  className="absolute left-3 top-1/2 -translate-y-1/2 pointer-events-none"
-                />
-                <Input
+              <div className="relative w-full max-w-[200px] focus-within:max-w-[300px] transition-all duration-300">
+                <Search 
                   placeholder="Search"
-                  className="pl-10 pr-3 py-[10px] w-full focus:bg-white ring-0 focus-visible:ring-0 focus:outline-none"
+                  className="size={20}"
+                  showShortcutHint={false}
                 />
               </div>
 

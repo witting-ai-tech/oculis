@@ -94,7 +94,7 @@ const Usage = () => {
       </div>
 
       {/* subscription */}
-      <div className="shadow-xs w-full mt-6 p-[14px] shadow-xs border border-[#D5D7DA] rounded-[8px]">
+      <div className="w-full mt-6 p-[14px] shadow-xs border border-[#D5D7DA] rounded-[8px]">
         <h3 className="text-[18px] text-[#181D27] font-semibold">
           Subscription Plan
         </h3>

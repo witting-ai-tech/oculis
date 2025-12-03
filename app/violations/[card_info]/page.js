@@ -1,5 +1,5 @@
 "use client";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import Image from "next/image";
 import { useSelector } from "react-redux";
 import { Table } from "@/components/Table";
@@ -181,7 +181,7 @@ const Page = () => {
   const selectedHistory = useSelector((state) => state.filters.history);
   const selectedSite = useSelector((state) => state.filters.sites);
 
-  const handleFilter = (history, site) => {
+  const handleFilter = useCallback((history, site) => {
     let filtered = data;
 
     if (site !== "All Sites") {
@@ -204,7 +204,7 @@ const Page = () => {
 
     setFilteredData(filtered);
     applySort(filtered, sortConfig.key, sortConfig.direction);
-  };
+  }, [applySort, sortConfig.direction, sortConfig.key]);
 
   const handleSort = (key) => {
     let direction = "asc";
@@ -216,7 +216,7 @@ const Page = () => {
     applySort(filteredData, key, direction);
   };
 
-  const applySort = (dataSet, key, direction) => {
+  const applySort = useCallback((dataSet, key, direction) => {
     if (!key) {
       setSortedData(dataSet);
       return;
@@ -238,11 +238,11 @@ const Page = () => {
     });
 
     setSortedData(sorted);
-  };
+  }, []);
 
   useEffect(() => {
     handleFilter(selectedHistory, selectedSite);
-  }, [selectedHistory, selectedSite]);
+  }, [selectedHistory, selectedSite, handleFilter]);
 
   const chartData = [
     { day: "Sunday", Hardhat: 2, Helmet: 1, Headgear: 3 },

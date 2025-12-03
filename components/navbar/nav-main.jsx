@@ -25,7 +25,7 @@ const NavMain = ({items, ...props}) => {
                             <CollapsibleTrigger asChild>
                                 <SidebarMenuButton
                                 tooltip={item.name}
-                                className="!text-sm !text-[#414651] hover:bg-white"
+                                className="!text-sm !text-[#717680] hover:bg-white"
                                 >
                                     {item.icon && <div className={`w-5 h5 
                                         ${(pathname.match(/^\/[^\/]+/)?.[0] ?? '')=== (item.href.match(/^\/[^\/]+/)?.[0] ?? '')  ? "text-[#7d48df]" : "text-[#717680]"}
@@ -33,7 +33,9 @@ const NavMain = ({items, ...props}) => {
                                             {item.icon}
                                         </div>
                                     }
-                                    <span>{item.name}
+                                    <span className={`${(pathname.match(/^\/[^\/]+/)?.[0] ?? '') === (item.href.match(/^\/[^\/]+/)?.[0] ?? '')  
+                                    ? "text-[#7d48df]" : "text-[#717680]"}`}>
+                                        {item.name}
                                     </span>
                                     {item?.submenu && (
                                         <ChevronRight className="ml-auto transition-transform duration-200 group-data-[state=open]/collapsible:rotate-90" />
@@ -43,7 +45,7 @@ const NavMain = ({items, ...props}) => {
                         ):(
                             <Link href={item.href}
                                 className={`group text-sm px-[6px] py-2 flex flex-row gap gap-3 items-center justify-left transition-transform rounded-[6px] hover:bg-white 
-                                    ${ pathname === item.href ? "text-[#7d48df]" : "text-[#414651]"
+                                    ${ pathname === item.href ? "text-[#7d48df]" : "text-[#717680]"
                                 }`}
                             >
                                 {item.icon && (
@@ -67,11 +69,11 @@ const NavMain = ({items, ...props}) => {
                             {item.submenu?.map((subItem)=>(
                                 <SidebarMenuSubItem key={subItem.id}>
                                     <SidebarMenuSubButton asChild
-                                     className="!text-sm !text-[#414651] hover:bg-white">
+                                     className="!text-sm !text-[#717680] hover:bg-white">
                                         <Link href={subItem.href}>
                                             <span className={`${pathname === subItem.href 
                                     ? "!text-[#7d48df]" 
-                                    : "text-[#414651]"}`}>{subItem.title}</span>
+                                    : "text-[#717680]"}`}>{subItem.title}</span>
                                         </Link>
                                     </SidebarMenuSubButton>
                                 </SidebarMenuSubItem>
