@@ -18,6 +18,7 @@ import {
 import { severityIcons } from "@/data/severityIcons";
 import axios from "axios";
 import CustomLayout from "@/components/CustomLayout";
+import AlertIncident from "@/components/AlertIncident";
 
 const people = [
   {
@@ -51,6 +52,10 @@ const AlertTimelinePage = () => {
 
   console.log(apiAlertData);
   
+  useEffect(()=>{
+    getAlertsData()
+  })
+
   useEffect(() => {
     const interval = setInterval(() => {
       setData((prevData) => {
@@ -127,7 +132,11 @@ const AlertTimelinePage = () => {
         </div>
 
         <div className="w-[55%] min-h-0 overflow-y-auto transition-all duration-300 ease-in-out relative pb-16">
-          <Incident
+          {/* <Incident
+            selectedIncident={selectedIncident}
+            severityIcons={severityIcons}
+          /> */}
+          <AlertIncident
             selectedIncident={selectedIncident}
             severityIcons={severityIcons}
           />

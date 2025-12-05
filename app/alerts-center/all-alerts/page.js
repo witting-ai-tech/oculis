@@ -20,7 +20,7 @@ import {
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/Button";
 import Drop from "@/components/Drop";
-import { Table } from "@/components/Table";
+import { Table } from "@/components/Tables";
 import SelectComp from "@/components/SelectComp";
 import { cn, snakeToTitle, formatDate } from "@/lib/utils";
 import Image from "next/image";
@@ -33,11 +33,12 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { escalateAlert, getAlertByID, getAlertsData, updateAlert } from "@/lib/api/alert-timeline";
-//import type { DetailedAlert } from "@/lib/api/alert-timeline";
 import { CheckCircle, ClockSnooze, Eye, Share01, Users01, Users02 } from "@untitledui/icons";
 import Incident from "@/components/Incident";
 import AlertIncident from "@/components/AlertIncident";
 import { severityIcons } from "@/data/severityIcons";
+import { BadgePill, Pill } from "@/data/pillConfig";
+import { getAllAlertsColumns } from "@/data/tableColumns";
 
 
 const people = [
@@ -62,158 +63,6 @@ const people = [
 
 
 const AllAlertsPage = () => {
-  // master alerts with ids for stable updates
-  // const [alerts, setAlerts] = useState(() =>
-  //   alertsTableData.map((a, i) => ({ ...a, id: i + 1 }))
-  // );
-  const alertColumns = [
-  { title: "Alert Type", key: "alertType", width: "25%",
-    render: (item)=>{
-      return(
-        <span>{snakeToTitle(item.alertType)}</span>
-      )
-    }
-   },
-  { title: "Severity",
-    key: "severity",
-    render: (item) => {
-      const severityColors = {
-        critical: "text-[#B42318] ",
-        high: "text-[#F04438] ",
-        medium: "text-[#F79009] ",
-        low: "text-green-600 ",
-      };
-    
-      return (
-        <span className={`${severityColors[item.severity] ||""}`}>
-          {snakeToTitle(item.severity)}
-        </span>
-      );
-    },
-  },
-  { title: "Worker", key: "worker", width:"15%",
-    render:(item)=>{
-      const worker = item.worker;
-      return (worker?.name || "Unknown")
-    }
-  },
-  { title: "Time Detected", key: "timeDetected",
-  },
-  { title: "Status",
-    key: "status",
-    render: (item) => {
-      let textColor = "";
-      let bgColor = "";
-      let borderColor = "";
-
-      if (item.status === "acknowledged") {
-        textColor = "text-[#067647]";
-        bgColor = "bg-[#ECFDF3]";
-        borderColor = "border-[#aaefc6]";
-      } else if (item.status === "pending" ||item.status === "in_progress") {
-        textColor = "text-[#b54708]";
-        bgColor = "bg-[#FFFAEB]";
-        borderColor = "border-[#fee396]";
-      } else if (item.status === "dismissed") {
-        textColor = "text-[#414651]";
-        bgColor = "bg-[#fafafa]";
-        borderColor = "border-gray-500";
-      } else {
-        textColor = "text-[#B42318]";
-        bgColor = "bg-[#FEF3F2]";
-        borderColor = "border-[#fca5a1]";
-      }
-      return (
-        <p
-          className={`h-[22px] text-xs w-fit ${bgColor} ${borderColor} ${textColor} font-medium rounded-full border-1 text-center px-[8px] py-[2px] flex items-center justify-center`}
-        >
-          {snakeToTitle(item.status)}
-        </p>
-      );
-    },
-  },
-  { title: "Assigned to", key: "assignedTo" },
-  { title: "Actions",
-    key: "action",
-    render: (item) => {
-     
-      return (
-        <div className="flex justify-center">
-        <DropdownMenu>
-          <DropdownMenuTrigger >
-            <div className="rounded-md border-2 hover:border-[#9e77ed] w-fit p-1">
-              <EllipsisVertical size={20} />
-            </div>
-          </DropdownMenuTrigger>
-          <DropdownMenuContent 
-            onClick={(e) => e.stopPropagation()} className="w-[200px]">
-            <DropdownMenuItem onClick={()=>{ 
-              handleSelectCurrentItem(item)
-            }}><Eye/> View Details</DropdownMenuItem>
-            
-            <DropdownMenuItem 
-            onClick={async (e) => {
-              e.stopPropagation();
-              try{
-                 await updateAlert(item.clientId,  
-                      item.alertId,
-                      {
-                        title: "No Helmet Violation - Verified",
-                        severity: "critical",
-                        status: "acknowledged",
-                        metadata: {
-                          reviewed_by: "Supervisor",
-                          note: "On-site inspection requested"
-                        }
-                      }
-                      )
-                setAlerts(prev => prev.map(a=>
-                  a.alertId === item.alertId? {...a, status:"acknowledged"} :a
-                ));
-              }catch(err){
-                console.error("Acknowlegde Failed: ", err)
-              }
-            }}
-            ><CheckCircle/> Acknowledge</DropdownMenuItem>
-            
-            {/* <DropdownMenuItem
-              //onClick={() => setEscalateTarget(alertId)} // open escalate modal
-            ><Share01/> Escalate to</DropdownMenuItem>
-             */}
-            <DropdownMenuItem><ClockSnooze/> Snooze</DropdownMenuItem>
-            
-            <DropdownMenuItem
-            onClick={async (e) => {
-              e.stopPropagation();
-               try{
-                await  await updateAlert(item.clientId,  
-                      item.alertId,
-                      {
-                        title: "No Helmet Violation - Verified",
-                        severity: "critical",
-                        status: "dismissed",
-                        metadata: {
-                          reviewed_by: "Supervisor",
-                          note: "On-site inspection requested"
-                        }
-                      }
-                      )
-                setAlerts(prev => prev.map(a=>
-                  a.alertId === item.alertId? {...a, status:"dismissed"} :a
-                ));
-              }catch(err){
-                console.error("Dismissed Failed: ", err)
-              }
-            }}
-            ><Users01/> Dismiss</DropdownMenuItem>
-          </DropdownMenuContent>
-        </DropdownMenu>
-        </div>
-       
-      );
-    },
-  },
-];
 
   const [alerts, setAlerts] = useState([]);
 
@@ -233,22 +82,12 @@ const AllAlertsPage = () => {
   const [escalateLoading, setEscalateLoading] = useState(false);
   
   
-  useEffect(()=>{
-    getAlertsData().then(
-      data=>setAlerts(
-        data.map(item =>({
-        clientId: item.client_id,
-        alertId: item._id,
-        alertType: item.alert_type,
-        severity: item.severity,
-        worker:item.worker,
-        timeDetected: formatDate(item.detected_at),
-        status: item.status,
-        assignedTo: (item.escalation_history?.[0]?.recipients?.[0]?.name || "Unassigned"), 
-        escalation_history:item.escalation_history
-      })))
-    ).catch(console.error);
-  },[]);
+    useEffect(()=>{
+      getAlertsData().then(
+        (data)=>{
+          setAlerts(data);
+      }).catch(console.error);
+    },[]);
 
   const applyFilters = useCallback(() => {
     let filtered = alerts;
@@ -275,104 +114,10 @@ const AllAlertsPage = () => {
     applyFilters();
   }, [applyFilters]);
 
-//   const handleEscalateToPerson = async (person)=>{
-//        if (!escalateTarget) return;
-//       setEscalateLoading(true);
-//     const payload = {
-//     recipients: [
-//       {
-//         id: person.id ?? `U-temp-${person.name.replace(/\s+/g, "-").toLowerCase()}`,
-//         name: person.name,
-//         role: (person.role || "").toLowerCase().replace(/\s+/g, "_"),
-//       },
-//     ],
-//     note: "Escalated via dashboard",
-//     by: {
-//       id: "dashboard-user",
-//       name: "Admin User",
-//     },
-//   };
+  const columns = getAllAlertsColumns(
+    updateAlert, setOverlay, setAlerts
+  );
 
-//   try {
-//     await escalateAlert(clientId, escalateTarget, payload);
-
-//     // update UI: mark as escalated and set assignedTo
-//     setAlerts(prev =>
-//       prev.map(a =>
-//         a.id === escalateTarget
-//           ? { ...a, status: "escalated", assignedTo: person.name }
-//           : a
-//       )
-//     );
-//   } catch (err) {
-//     console.error("Escalation failed:", err);
-//   } finally {
-//     setEscalateLoading(false);
-//     setEscalateTarget(null);
-//   }
-// };
-  
-  const handleSelectCurrentItem = async (currentItem) =>{
-    try{
-      console.log("Fetching full details for:", currentItem.alertId);
-      const raw = await getAlertByID(currentItem.clientId, currentItem.alertId)
-      const detailedAlert={
-      id: raw._id,
-      clientId: raw.client_id,
-      siteId: raw.site_id,
-      factoryId: raw.factory_id,
-      cameraId: raw.camera_id,
-      alertType: raw.alert_type,
-      title: raw.title,
-      severity: raw.severity,
-      status: raw.status,
-      detectedAt: raw.detected_at,
-      worker: {
-        id: raw.worker?.id,
-        name: raw.worker?.name,
-        shift: raw.worker?.shift,
-        badgeId: raw.worker?.badge_id,
-      },
-      location: {
-        area: raw.location?.area,
-        floor: raw.location?.floor,
-        cameraLabel: raw.location?.camera_label,
-      },
-      media: {
-        imageUrl: raw.media?.image_url,
-        clipUrl: raw.media?.clip_url,
-      },
-      bbox: {
-        x: raw.bbox?.x,
-        y: raw.bbox?.y,
-        w: raw.bbox?.w,
-        h: raw.bbox?.h,
-      },
-      metadata: {
-        reviewedBy: raw.metadata?.reviewed_by,
-        note: raw.metadata?.note,
-      },
-      escalationHistory: (raw.escalation_history || []).map((e) => ({
-        timestamp: e.timestamp,
-        recipients: (e.recipients || []).map((r) => ({
-          id: r.id,
-          name: r.name,
-          role: r.role,
-        })),
-        note: e.note,
-        by: {
-          id: e.by?.id,
-          name: e.by?.name,
-        },
-      })),
-    };
-
-      setCurrentItem(detailedAlert);
-      setOverlay(true);
-    }catch(err){  
-      console.error("Failed to fetch alert details:", err);
-    }
-  }
 return (
     <>
       <h1 className="text-[20px] xl:text-[24px] font-semibold text-[#181d27] mb-6">
@@ -453,15 +198,18 @@ return (
           </div>
         </div>
         <section className="pb-40 min-[1025px]:pb-26 h-full w-full overflow-y-auto hide-scrollbar">
-          <div className="mt-4 min-[1025px]:mt-8 border rounded-lg overflow-hidden">
+          <div className="mt-4 min-[1025px]:mt-8 border rounded-lg overflow-hidden">  
             <Table
-              columns={alertColumns}
+              columns = {columns}
               data={filteredAlertsData}
               selectable
-              //setCurrentItem={handleSelectCurrentItem}
-              onRowClick={handleSelectCurrentItem}
+              setCurrentItem={(alert)=>{
+                setOverlay();
+                setCurrentItem(alert)
+                updateAlert()
+              }}
               setOverlay={setOverlay}
-              onSelectionChange={(indexes) => {
+               onSelectionChange={(indexes) => {
                 setSelectedIndexes(indexes);
                 setSelectedCount(indexes.length);
               }}
@@ -470,7 +218,6 @@ return (
           {overlay && (
           <div className="inset-0 z-25 fixed top-17 right-0 w-full h-full bg-[#54565a]/80 flex items-center justify-end">
             <div className="bg-white h-full w-[50%] flex flex-row justify-between items-start p-2 xl:p-4 text-sm">
-              {/* {console.log("OVERLAY currentIem", currentItem)} */}
               <AlertIncident
                 selectedIncident={currentItem}
                 severityIcons={severityIcons}
@@ -496,14 +243,13 @@ return (
                 onClick={async ()=>{
                   if(selectedIndexes.length==0) return;
                   const selectedIds = selectedIndexes.map(
-                    (i) => filteredAlertsData[i].alertId
+                    (i) => filteredAlertsData[i]._id
                   );
-                  console.log("selctedIDX", selectedIds);
                   try{
                     await Promise.all(
-                      selectedIds.map((alertId)=>
+                      selectedIds.map((_id)=>
                       updateAlert("671c6d5fb2f4a95c7baf2143",  //client id
-                      alertId,
+                      _id,
                       {
                         title: "No Helmet Violation - Verified",
                         severity: "critical",
@@ -516,7 +262,7 @@ return (
                       )
                     ));
                     setAlerts((prev)=>
-                    prev.map((a)=> selectedIds.includes(a.alertId)
+                    prev.map((a)=> selectedIds.includes(a._id)
                       ?{...a, status:"acknowledged"}
                       :a
                     )
@@ -549,11 +295,11 @@ return (
                         key={idx}
                         className="flex items-center gap-3 px-4 py-3 focus:bg-gray-100 cursor-pointer"
                         onClick={async ()=>{
-                          const selectedIds = selectedIndexes.map(i=> filteredAlertsData[i].alertId);
+                          const selectedIds = selectedIndexes.map(i=> filteredAlertsData[i]._id);
                           try{
                             await Promise.all(
-                              selectedIds.map(alertId=>
-                                escalateAlert( "671c6d5fb2f4a95c7baf2143", alertId,
+                              selectedIds.map(_id=>
+                                escalateAlert( "671c6d5fb2f4a95c7baf2143", _id,
                                 {
                                   recipients: [
                                     {
@@ -573,7 +319,7 @@ return (
                             );
                             setAlerts(prev =>
                               prev.map(a =>
-                                selectedIds.includes(a.alertId)
+                                selectedIds.includes(a._id)
                                   ? { ...a, assignedTo: person.name, status: "escalated" }
                                   : a
                               )

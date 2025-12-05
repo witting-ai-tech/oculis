@@ -8,9 +8,10 @@ import { Video } from "lucide-react";
 import { IoMdImage } from "react-icons/io"; 
 
 import { snakeToTitle, formatDate } from "@/lib/utils";
+import { Pill } from "@/data/pillConfig";
 
 const AlertIncident = ({ selectedIncident, severityIcons }) => {
-
+ 
     const getSeverityStyles = (severity) => {
     let textColor, bgColor, borderColor;
     if (severity === "Critical") {
@@ -34,7 +35,6 @@ const AlertIncident = ({ selectedIncident, severityIcons }) => {
       bgColor = "bg-[#f9f9f9]";
       borderColor = "border-gray-300";
     }
-
     return { textColor, bgColor, borderColor };
   };
 
@@ -48,12 +48,13 @@ const AlertIncident = ({ selectedIncident, severityIcons }) => {
         {severityIcons[snakeToTitle(selectedIncident?.severity)]}
         <div>
           <h3 className="text-lg xl:text-[20px] font-semibold">
-            {snakeToTitle(selectedIncident?.alertType)}
+            {snakeToTitle(selectedIncident?.alert_type)}
           </h3>
           <div className="flex flex-col xl:flex-row items-start gap-1 xl:gap-2 mb-2 text-[#535862] text-sm xl:text-base ">
-            <p className="w-full">Alert ID: <span>{selectedIncident.id}</span></p> 
+            <p className="w-full">Alert ID: <span>{selectedIncident._id}</span></p>
+             
             <span className="hidden xl:block">|</span>{" "} 
-            <p className="w-full">{selectedIncident?.location.area} -{">"} {selectedIncident?.location.floor} -{">"} {selectedIncident?.location.cameraLabel} </p>
+            <p className="w-full">{selectedIncident?.location.area} -{">"} {selectedIncident?.location.floor} -{">"} {selectedIncident?.location.camera_label} </p>
             {/* Alert ID: FA-2043 | Assembly → Floor 2 → Cam XYZ */}
           </div>
         </div>
@@ -80,22 +81,18 @@ const AlertIncident = ({ selectedIncident, severityIcons }) => {
         <div className="w-full">
           <p className="text-sm">First Detected</p>
           <p className="text-sm xl:text-base text-[#252b37] font-semibold py-1">
-            {formatDate(selectedIncident?.detectedAt)}
+            {formatDate(selectedIncident?.detected_at)}
           </p>
         </div>
         <div className="w-full">
           <p className="text-sm mb-1">Severity</p>
-          <p
-            className={`h-[22px] text-xs w-fit ${bgColor} ${borderColor} ${textColor} font-medium rounded-full border-1 text-center px-2 py-1 flex items-center justify-center`}
-          >
-            {snakeToTitle(selectedIncident?.severity)}
-          </p>
+          <Pill label={snakeToTitle(selectedIncident?.severity)}/>
         </div>
       </div>
       <Separator className="w-full mb-4" />
       <div className="w-full">
         <Image
-          src={selectedIncident?.media.imageUrl || ""}
+          src={selectedIncident?.media.image_url || ""}
           alt="incident"
           height={200}
           width={200}
