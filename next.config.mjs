@@ -6,6 +6,12 @@ images: {
         protocol: "https",
         hostname: "randomuser.me",
       },
+      {
+        protocol: "https",
+        hostname: "cdn.example.com",
+        // port: "",
+        // pathname: "/**",
+      },
     ],
   },
 };

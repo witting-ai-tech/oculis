@@ -12,6 +12,7 @@ export function Table({
   setOverlay,
   handleSort,
   sortConfig,
+  onRowClick,
   onSelectionChange = () => {},
 }) {
   const [selected, setSelected] = useState([]);
@@ -22,12 +23,15 @@ export function Table({
   }, [selected, onSelectionChange]);
 
   const handleSetCurrentItem = (item) => {
-    console.log("setCurrentItem", item);
-    if (setCurrentItem) {
-      setCurrentItem(item);
-      setOverlay(true);
-    }
+      if (setCurrentItem) {
+        setCurrentItem(item);
+        setOverlay(true);
+      }
   };
+
+  const handleRowClickInternal =(item)=>{
+    if(onRowClick) onRowClick(item);
+  }
 
   const handleSelectAll = (checked) => {
     if (checked) {
@@ -86,7 +90,11 @@ export function Table({
             <tr
               key={idx}
               className="border-b hover:bg-[#fafafa] cursor-pointer group"
-              onClick={() => handleSetCurrentItem(item)}
+              onClick={() => {
+                  if(onRowClick) handleRowClickInternal(item); 
+                  else handleSetCurrentItem(item);
+                }
+              }
             >
               {selectable && (
                 <td

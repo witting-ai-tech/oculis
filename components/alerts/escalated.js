@@ -19,6 +19,7 @@ const assignedToOptions = [
   { id: 2, title: "Unassigned" },
   { id: 3, title: "John Lee" },
   { id: 4, title: "Jane Doe" },
+  { id:5, title:"Olivia Rhye"}
 ];
 
 const severityOptions = [
